@@ -1,10 +1,4 @@
-# Moving Your On-Premises Data Servers To Azure
-
-Don't run your own datacenter - let Microsoft do it for you! Learn everything you need to know to get those SQL Server and MongoDB databases off-premises!
-
-This README gives a guide to setting up and running all the demos contained with the _Moving Your On-Premises Data Servers To Azure_ presentation.
-
-[Check out this full-length recording of the presentation](**https://zoom.us/recording/share/nEs92PNt82DRIBOM8QbUWZuDj00GTwlBtanVqCU73MCwIumekTziMw?startTime=1541550068000)
+# Lab 1 - Moving Your On-Premises Data Servers To Azure
 
 ## Services Used
 
@@ -12,50 +6,11 @@ This README gives a guide to setting up and running all the demos contained with
 * Azure SQL Managed Instance
 * Azure SQL Data Migration Service
 
-## How to Publish/Deploy Manually
+### Exercise 1 - Create an Azure Cosmos DB account with Cloud Shell
 
-The best way to deploy is to clone the repository into the Azure Cloud Shell. That will ensure you have the latest and greatest CLI tooling available to you.
+Exercise 1 shows how to create a new Azure Cosmos DB account using the Azure Command Line Interface (CLI) and the Cloud Shell.
 
-(You can run the scripts locally and everything will work the same way. For the rest of this guide though, I am going to assume the Cloud Shell.)
-
-### Azure Setup Instructions
-
-1. Open up the Azure Portal and start a new Cloud Shell session
-1. Clone this repository: `git clone git clone https://github.com/microsoft/IgniteTheTour.git`
-1. Change into the `DEV - Building your Applications for the Cloud/DEV10/deployment` directory
-1. Run the `deploy.sh` script: `./deploy.sh`
-
-The `deploy.sh` script will prompt you for the following information:
-
-* Azure subscription to install all the resources into
-* The resource group name
-* A prefix to apply the name of the resources created (this helps keep the names unique across all of Azure)
-* A username (to be used for all resources)
-* A password (to be used for all resources)
-
-The script will take roughly an hour to run to completion. And even then it will spin off a separate process to finish the installation of the SQL Managed Instance (SQL MI). The SQL MI will take another 6 - 8 hours to finish provisioning.
-
-> You will need to run another script: `datamigrationservice-deploy.sh` after the SQL MI has finished. Please remember the values you used for `RESOURCE_GROUP_NAME` and `RESOURCE_PREFIX`
-
-Once the install is finished, the script will output important URLs and connection string info that will be used during the demo.
-
-### Azure Cleanup Instructions
-
-This demo uses several expensive Azure resources. You should delete them when you're finished to save on costs.
-
-1. Open the Azure Portal and start a new Cloud Shell session
-1. (Assuming you haven't already done this) Clone this repository: `git clone https://github.com/azure-samples/ignite-tour/lp1s1`
-1. Run the `cleanup.sh` script: `./cleanup/cleanup.sh`
-
-## Demo Walkthroughs
-
-The following are detailed walkthroughs for each of the demos in this session.
-
-### Demo 1 - Create an Azure Cosmos DB account with Cloud Shell
-
-Demo 1 shows how to create a new Azure Cosmos DB account using the Azure Command Line Interface (CLI) and the Cloud Shell.
-
-The services in this demo include:
+The services in this exercise include:
 
 * [Azure Cosmos DB](https://docs.microsoft.com/azure/cosmos-db?WT.mc_id=msignitethetour-github-mig20)
 * [Azure CLI](https://docs.microsoft.com/cli/azure?WT.mc_id=msignitethetour-github-mig20)
