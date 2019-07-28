@@ -129,6 +129,8 @@ mongorestore \
 
 ### Demo 3 - Assess DB Migration Using the DB Migration Tool and Setup for SQL Managed Instance Migration
 
+We will be using the [Database Migratrion Tool](https://www.microsoft.com/en-us/download/confirmation.aspx?id=53595)
+
 The next portion of the session will talk about the Inventory service. The inventory service is hosted on a SQL server and served by an ASP.NET core website. The Inventory service determines the quantity of a unit that's currently in stock.
 
 On the home page of the web site, you can see the SQL database name hosting the inventory. Whether it's the on-premises db or the new SQL Managed Instance (MI).
