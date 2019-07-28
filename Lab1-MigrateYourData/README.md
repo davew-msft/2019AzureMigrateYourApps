@@ -55,11 +55,6 @@ This will take several minutes to spin up. When it is finished (you'll see a bun
 
 ![resource group in portal image](images/resource-groups.png)
 
-Then you'll be able to filter by the name of the Resource Group you just created an be able to see it. Clicking into it will show you the Azure Cosmos DB account.
-
-![resource group filtered](images/filter-rg.png)
-
-> If you're presenting this demo live, you should have a another Azure Comos DB account ready to go for the rest of the presentation due to the time it takes to spin it up. Use that other for the rest of the presentation.
 
 ### Demo 2 - Migrate On-Premises MongoDB to Azure Cosmos DB
 
