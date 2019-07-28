@@ -71,7 +71,7 @@ Here we are moving an on-premises MongoDB (as represented in this session by an 
 > ```language-bash
 > $RESOURCE_GROUP_NAME=<WHATEVER YOU USED ABOVE>
 > $MONGO_VM_NAME=mongo
- ssh-keygen
+> ssh-keygen
 > az vm user update -u azureuser --ssh-key-value "$(< ~/.ssh/id_rsa.pub)" -g $RESOURCE_GROUP_NAME -n $MONGO_VM_NAME
 > ```
 
