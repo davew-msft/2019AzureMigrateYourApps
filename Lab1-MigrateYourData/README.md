@@ -3,7 +3,7 @@
 ## Services Used
 
 * Azure Cosmos DB (with MongoDB API)
-* Azure SQL Managed Instance
+* Azure SQL Database
 * Azure SQL Data Migration Service
 
 ### Exercise 1 - Create an Azure Cosmos DB account with Cloud Shell
