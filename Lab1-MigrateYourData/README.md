@@ -55,8 +55,12 @@ This will take several minutes to spin up. When it is finished (you'll see a bun
 
 ![resource group in portal image](images/resource-groups.png)
 
+While you wait for your Cosmos DB instance to spin up you can move on to the next Lab on miragting a Mogo DB.  
 
-### Demo 2 - Migrate On-Premises MongoDB to Azure Cosmos DB
+1) Click 'New Session' Icon in the command shell toolbar.
+<Insert Image Here for the Icon>
+ 
+### Lab 2 - Migrate On-Premises MongoDB to Azure Cosmos DB
 
 Here we are moving an on-premises MongoDB (as represented in this session by an Azure Linux VM running MongoDB) to Azure Cosmos DB using native MongoDB commands.
 
