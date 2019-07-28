@@ -22,7 +22,7 @@ Follow these steps:
 1. Click on the `>_` button in the toolbar, and wait for the Cloud Shell to initialize (it will take a few seconds).
 ![cloud shell command](https://docs.microsoft.com/en-us/azure/cloud-shell/media/overview/overview-bash-pic.png)
 1. Select `bash` from the dropdown of the Cloud Shell window.
-### We need to get the first time setup instructinos for shell.  I know there is another lab with screenshots.
+<mark>We need to get the first time setup instructinos for shell.  I know there is another lab with screenshots.</mark>
 1. Create a _Resource Group_ to put the Azure Cosmos DB instance in. First off create 3 Bash variables:
   * Resource Group Name
   * Region tl host the Azure Cosmos DB instance
