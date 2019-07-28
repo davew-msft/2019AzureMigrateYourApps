@@ -35,7 +35,7 @@ ACCOUNT_NAME_COSMOS='mig20cosmosdbaccount'
 ```
 5. Then create the _Resource Group_ itself. (A _Resource Group_ is a logical location of resources, or Azure services grouped together.)
 
-'''language-bash
+```language-bash
 az group create --name $RESOURCE_GROUP_COSMOS --location $LOCATION_COSMOS
 ```
 
