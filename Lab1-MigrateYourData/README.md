@@ -66,13 +66,12 @@ Here we are moving an on-premises MongoDB (as represented in this session by an 
 
 #### Prerequistes to run theh demos if on WSL (or macOS)
 
-> In the original demo during Ignite The Tour, we used Ubuntu running on Windows Subsystem for Linux (WSL). You can use that, or you can continue to use the Cloud Shell if you like. These commands will work in either.
-> If you do use Ubuntu on Windows, you will need to make sure to follow the [instructions here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?WT.mc_id=ignitethetour-github-mig20) to install the Azure CLI.
-
-> You will also need to install the Linux VM's RSA certificate using the following commands:
+>
+> You will need to install the Linux VM's RSA certificate using the following commands:
 > ```language-bash
 > $RESOURCE_GROUP_NAME=<WHATEVER YOU USED ABOVE>
 > $MONGO_VM_NAME=mongo
+ ssh-keygen
 > az vm user update -u azureuser --ssh-key-value "$(< ~/.ssh/id_rsa.pub)" -g $RESOURCE_GROUP_NAME -n $MONGO_VM_NAME
 > ```
 
