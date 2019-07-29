@@ -6,6 +6,18 @@
 * Azure SQL Database
 * Azure SQL Data Migration Service
 
+### Setup Environment
+Run the deploy.sh in the MIG20 repo
+On SQL Box
+   [Download backpac file](https://github.com/chadgms/2019AzureMigrateYourApps/blob/master/setupfiles/TailwindInventory.bacpac)
+   Restore the backpac file
+   [Download Data Migration Tool](https://www.microsoft.com/en-us/download/details.aspx?id=53595) and Install 
+   
+On Linux Box
+    Install Mongo
+    REstore the Mongo data
+
+
 ### Exercise 1 - Create an Azure Cosmos DB account with Cloud Shell
 
 Exercise 1 shows how to create a new Azure Cosmos DB account using the Azure Command Line Interface (CLI) and the Cloud Shell.
