@@ -8,6 +8,7 @@
 
 ### Setup Environment
 Run the deploy.sh in the MIG20 repo
+
 On SQL Box
    [Download backpac file](https://github.com/chadgms/2019AzureMigrateYourApps/blob/master/setupfiles/TailwindInventory.bacpac)
    Restore the backpac file
