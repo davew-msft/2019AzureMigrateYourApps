@@ -70,17 +70,19 @@ This will take several minutes to spin up. When it is finished (you'll see a bun
 
 While you wait for your Cosmos DB instance to spin up you can move on to the next Lab on miragting a Mogo DB.  
 
-1) Click 'New Session' Icon in the command shell toolbar.
-<Insert Image Here for the Icon>
+
  
 ### Lab 2 - Migrate On-Premises MongoDB to Azure Cosmos DB
 
 Here we are moving an on-premises MongoDB (as represented in this session by an Azure Linux VM running MongoDB) to Azure Cosmos DB using native MongoDB commands.
 
-#### Prerequistes to run theh demos if on WSL (or macOS)
+1) Click 'New Session' Icon in the command shell toolbar.
 
 >
-> You will need to install the Linux VM's RSA certificate using the following commands:
+2) You will need to install the Linux VM's RSA certificate using the following commands.
+ssh-keygen will generate a new private / pubilc key for you.  You can overwrite the existing key if it warns you that it allready existes.  
+
+The AZ VM User comamand will use the Azure shell commands to install the public key into the Linux VM.
 > ```language-bash
 > $RESOURCE_GROUP_NAME=<WHATEVER YOU USED ABOVE>
 > $MONGO_VM_NAME=mongo
