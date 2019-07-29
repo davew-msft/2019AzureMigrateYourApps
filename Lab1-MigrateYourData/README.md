@@ -15,8 +15,16 @@ On SQL Box
    [Download Data Migration Tool](https://www.microsoft.com/en-us/download/details.aspx?id=53595) and Install 
    
 On Linux Box
-    Install Mongo
-    REstore the Mongo data
+    b.	Need to install Mongo on the Linux VM	(Link)
+i.	Update system software packages
+1.	sudo apt update
+ii.	Install Mongo
+1.	sudo apt install mongodb
+iii.	Check it is running
+1.	sudo systemctl status mongodb
+
+Create a Database Migration Service iside Azure
+
 
 
 ### Exercise 1 - Create an Azure Cosmos DB account with Cloud Shell
@@ -95,19 +103,22 @@ During this demo we will be using the native MongoDB commands:
 * `mongodump` to get the data out of the source MongoDB
 * `mongorestore` to get the data into Azure Cosmos DB
 
-The steps to run the demo are below:
+We can now continue to connect to the Mongo VM and migrate it's data to Cosmos DB.
 
 1. Find out the IP address of the Linux VM.
   * Go into the Azure portal
-  * Click on the `Resource Groups` on the right hand menu
-  * Filter by the resource group name you created during the installation, and click into it
-  * Find the item called `mongoPublicIP`, click on it, and copy the element called `IP address`.
-  ![mongo public ip address node](images/mongo-public-ip.png)
+  * Click on the `Resource Groups` on the left hand menu
+  * Click on your resoruce group you used when you ran the setup.sh command in the setup steps
+  * Find the item called `mongoPublicIP`, click on it, and copy the element called `IP address'
+  * Save this IP in Notepad or somewhere you can get to it later
+ 
 2. Find out the host name of the Azure Cosmos DB
-  * Back in the list of resources, click on the Azure Cosmos DB account that you're using
-  * Click `Connection String` on the right hand side, then copy the value from `Host`, `Username`, `Primary password`, and `Primary Connection String`
-  ![cosmos host value](images/cosmos-host.png)
-  ![cosmos primary conx string](images/cosmos-primary-conx.png)
+  * Click on the `Resource Groups` on the left hand menu
+  * Click on the resrouce group you used when you created the Cosmos DB
+  * Click on the Cosmos DB account
+  * Make sure it's status is 'Online', if not you will have to wait for it to complete
+  * Click `Connection String` on the right hand side, then copy the value from `Host`, `Username`, `Primary password`, and `Primary Connection String` and save them in Notepad or other handy place
+
 3. ssh into the Linux VM: `ssh azureuser@MONGO-IP-ADDRESS`
 4. Run a mongo dump, which exports all the data to a file: `mongodump --collection inventory --db tailwind`
 5. Then change into the directory that contains all dump files from the MongoDB server: `cd dump`
@@ -127,20 +138,12 @@ mongorestore \
     --db tailwind \
     --collection inventory
 ```
-8. Switch the connection string to the Product Service website, so go back out to the overall Resources view and click on `<RESOURCEPREVIX>product` app service. (The `<RESOURCEPREFIX>` is the value you set during installation.)
-9.Click on `Application Settings` from the right hand menu.
-10. Enter the Cosmos DB `Primary Connection String` copied above into the _value_ portion for `DB_CONNECTION_STRING`. This is located in the `Application Settings` section.
-![product service db connection string value](images/DB_CONNECTION_STRING.png)
-11. The Product Descriptions are now coming from Cosmos DB - so let's prove that it's working by adding an item.
-12. Go into your Azure Cosmos DB account and click on `Data Explorer`. Select the `tailwind` database.
-![Azure Cosmos DB Data explorer](images/cosmos-data-explorer.png)
-13. Expland the `tailwind` node, expand the `inventory` node, and select `Documents`.
-14. Click on the `New Document` button and past the JSON found in `Files\new-item.json` (in this repo), and then click `Save`.
-![New cosmos item](images/new-cosmos-item.png)
-15. View the website again, and see the item show up at the very bottom.
-16. Feel free to browse the portal for Azure Cosmos DB - especially `Replicate data globally`. Click on the map and data will instantly be moved.
-![instantly replicate data](images/cosmos-replicate-data.png)
-17. The `Metrics` tab shows how fast Azure Cosmos DB is responding.
+8. Go into your Azure Cosmos DB account and click on `Data Explorer`. Select the `tailwind` database.
+
+9. Expland the `tailwind` node, expand the `inventory` node, and select `Documents`
+
+10. You should see the inventory item docuemnts are now in Cosmos DB
+
 
 ### Demo 3 - Assess DB Migration Using the DB Migration Tool and Setup for SQL Managed Instance Migration
 
@@ -148,33 +151,28 @@ We will be using the [Database Migratrion Tool](https://www.microsoft.com/en-us/
 
 The next portion of the session will talk about the Inventory service. The inventory service is hosted on a SQL server and served by an ASP.NET core website. The Inventory service determines the quantity of a unit that's currently in stock.
 
-On the home page of the web site, you can see the SQL database name hosting the inventory. Whether it's the on-premises db or the new SQL Managed Instance (MI).
+On the home page of the web site, you can see the SQL database name hosting the inventory. 
 
 The on-premises database in this case is modeled by a Windows 2012/SQL 2012 virtual machine.
 
-> **IMPORTANT** This portion can be run on Windows only!
-> To run this demo you will need the Microsoft Data Migration Assistant, follow [these instructions](https://docs.microsoft.com/sql/dma/dma-overview?WT.mc_id=msignitethetour-github-mig20) to install.
-> You will also need the Microsoft Da
-
-The steps to run the demo are as follows:
-
 #### Assessment
 
-1. Install the Data Migration Assistant, open it up
+1. RDP to the SQL 2012 VM 
+1. Open the Data Migration Assistant
 1. Create a new project
   * Project Type: `Assessment`
   * Project Name: `tailwind`
   * Source server type: `SQL server`
-  * Target server type: `Azure SQL Database Managed Instance`
+  * Target server type: `Azure SQL Database`
 1. Click `Next`
 1. Check `Check database compatibility`
 1. Check `Check feature parity`
 1. Click `Next`
-1. Enter the SQL 2012 server name and authentication credentials.
-  * The server name can be obtained through the portal. Open up the resource view and then click on `sql2012-ip`. When that opens copy the `IP Address`.
-  ![sql 2012 IP node](sql-ip-address.png)
-1. Select the `tailwind` database, click `Add`.
-1. Click `Start Assessment`.
+1. Enter the localhost for server name and Windows authentication
+1. UnCheck the Encrypt Connection Box
+1. Select the `tailwind` database, click `Add`
+1. Click `Start Assessment`
+1. You will see a report on compatiblity issues.  There should only be one for this DB becuase Service Broker is turned on.  In a real situation you would midigate the issues.  For this lab we do not have to worry about as we know service broker is not actually used.
 
 #### Migration
 
