@@ -12,7 +12,7 @@ Agenda
 
  - 11:15- 11:30 min -Break
 
- - 11:30 – 12:15  – PPT - Containerizing and Orchestration of applications on Azure (Tim)
+ - 11:30 – 12:15  – PPT - Containerizing and Orchestration of applications on Azure (Tim, Vadim)
 
  - 12:15 – 12:45 Lunch
 
@@ -22,7 +22,7 @@ Agenda
 
  - 2:15  - 2:30 – Break
 
- - 2:30- 3:00 – PPT – DevOps (Vadim)
+ - 2:30- 3:00 – PPT – DevOps (Tim)
 
  - 3:00 – 4:00 Lab 3 – Deploy a web app using CI/CD in Azure DevOps (Chad document)
 
