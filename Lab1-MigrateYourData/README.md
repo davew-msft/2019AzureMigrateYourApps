@@ -1,12 +1,46 @@
 # Lab 1 - Moving Your On-Premises Data Servers To Azure
 
-## Services Used
+## Lab Goals
 
-* Azure Cosmos DB (with MongoDB API)
-* Azure SQL Database
-* Azure SQL Data Migration Service
+The goals of this lab is to get you familiar with the Azure environment, portal and command line.  Everything you can do in the Azure Portal can also be done through a command line and scripting.  We will expose you to both methods of creating resources in Azure.  In this lab you will:
 
-### Setup Environment
+- Experience Creating a Virtual Machine
+- Use the Azure Cloud Shell to create resources
+- Migrate a Linux Mongo DB to Azure Cosmos DB 
+- Migrate a SQL Server 2017 DB to Azure SQL Database
+
+## Setup Environment
+You will need a few things in your environment setup for this lab.
+
+- A SQL Server VM that will act as our on-premise SQL instance that we will migrate to Azure SQL DB
+
+  ​	You will create this as part of the lab exercise
+
+- A Mongo DB that you will migrate data from to Cosmos DB
+
+  ​	A public Mongo DB will be made available to you to access remotely.
+
+- An Azure Cosmos DB instance
+
+  ​	You will create this as part of the lab
+
+- The Microsoft Data Migration Assistant 
+
+  ​	You will install this as part of the SQL VM creation
+
+- An Azure Database Migration Service
+
+  ​	You will create this as part of the setup 
+
+### Setup 1 - Create SQL VM
+
+Login to the Azure Portal http://portal.azure.com
+
+Press the create new resource button in the upper left toolbar
+![CreateNewResource](D:\OneDrive\Documents\GitHub\2019AzureMigrateYourApps\images\CreateNewResource.png)
+
+
+
 Run the deploy.sh in the MIG20 repo
 
 On SQL Box
