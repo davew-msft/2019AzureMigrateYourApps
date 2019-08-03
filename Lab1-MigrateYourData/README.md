@@ -37,7 +37,7 @@ You will need a few things in your environment setup for this lab.
 Login to the Azure Portal http://portal.azure.com
 
 Press the create new resource button in the upper left toolbar
-![CreateNewResource](D:\OneDrive\Documents\GitHub\2019AzureMigrateYourApps\images\CreateNewResource.png)
+![CreateNewResource](\images\CreateNewResource.png)
 
 
 
