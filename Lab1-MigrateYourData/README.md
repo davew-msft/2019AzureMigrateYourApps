@@ -34,9 +34,13 @@ You will need a few things in your environment setup for this lab.
 
 ### Setup 1 - Create SQL VM
 
-Login to the Azure Portal http://portal.azure.com
-
-![CreateNewResource](../images/CreateNewResource.png)
+1. Login to the Azure Portal http://portal.azure.com
+   ![CreateNewResource](../images/CreateNewResource.png)
+2. as;dlfkj
+3. asdfl;kj
+4. asdfl;kj
+5. as;dlfkj
+6. 
 
 
 
