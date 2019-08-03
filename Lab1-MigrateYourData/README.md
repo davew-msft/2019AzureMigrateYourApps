@@ -13,17 +13,17 @@ On SQL Box
    [Download backpac file](https://github.com/chadgms/2019AzureMigrateYourApps/blob/master/setupfiles/TailwindInventory.bacpac)
    Restore the backpac file
    [Download Data Migration Tool](https://www.microsoft.com/en-us/download/details.aspx?id=53595) and Install 
-   
+
 On Linux Box
     b.	Need to install Mongo on the Linux VM	(Link)
 i.	Update system software packages
 1.	sudo apt update
-ii.	Install Mongo
+	ii.	Install Mongo
 1.	sudo apt install mongodb
-iii.	Check it is running
+	iii.	Check it is running
 1.	sudo systemctl status mongodb
 
-Create a Database Migration Service iside Azure
+Create a Database Migration Service inside Azure
 
 
 
@@ -79,7 +79,7 @@ This will take several minutes to spin up. When it is finished (you'll see a bun
 While you wait for your Cosmos DB instance to spin up you can move on to the next Lab on miragting a Mogo DB.  
 
 
- 
+
 ### Lab 2 - Migrate On-Premises MongoDB to Azure Cosmos DB
 
 Here we are moving an on-premises MongoDB (as represented in this session by an Azure Linux VM running MongoDB) to Azure Cosmos DB using native MongoDB commands.
@@ -111,7 +111,7 @@ We can now continue to connect to the Mongo VM and migrate it's data to Cosmos D
   * Click on your resoruce group you used when you ran the setup.sh command in the setup steps
   * Find the item called `mongoPublicIP`, click on it, and copy the element called `IP address'
   * Save this IP in Notepad or somewhere you can get to it later
- 
+
 2. Find out the host name of the Azure Cosmos DB
   * Click on the `Resource Groups` on the left hand menu
   * Click on the resrouce group you used when you created the Cosmos DB
@@ -197,7 +197,7 @@ The on-premises database in this case is modeled by a Windows 2012/SQL 2012 virt
   * Password: the password value created when you ran the install
 1. Select Target
   * Managed Instance host name: obtained from going into the SQL MI node from all resources view and copying the `Host name` value.
-  ![sql mi host](images/sql-mi-host.png)
+    ![sql mi host](images/sql-mi-host.png)
   * Authentication type: `SQL Authentication`
   * User anme: the user name value created when you ran the install
   * Password: the password value created when you ran the install
