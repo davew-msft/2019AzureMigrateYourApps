@@ -13,18 +13,18 @@ The goals of this lab is to get you familiar with the Azure environment, portal 
 You will need a few things in your environment setup for this lab.
 
 - A SQL Server VM that will act as our on-premise SQL instance that we will migrate to Azure SQL DB
-- You will create this as part of the lab exercise
+  -	You will create this as part of the lab exercise
 - An Azure SQL Database Instance.  This is the SQL PaaS service you will migrate the on-premise server to.
   - You will create this as part of the lab
 
 - A Mongo DB that you will migrate data from to Cosmos DB
 - A public Mongo DB will be made available to you to access remotely.
 - An Azure Cosmos DB instance
-- You will create this as part of the lab
+-   You will create this as part of the lab
 - The Microsoft Data Migration Assistant 
-- You will install this as part of the SQL VM creation
+-   You will install this as part of the SQL VM creation
 - An Azure Database Migration Service
-- You will create this as part of the setup 
+- 	You will create this as part of the setup 
 
 
 
