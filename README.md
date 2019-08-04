@@ -2,15 +2,15 @@
 Baseline event Series - Presentations and labs for the event
 
 Agenda
- - 9-9:30 min – PPT - Cloud Apps and Azure – Introduction  (Tim)
+ - 9-9:30 – PPT - Cloud Apps and Azure – Introduction  (Tim)
 
- - 9:30 – 10:00 min – PPT -  Overview of Database Migrations (Chad)
+ - 9:30 – 10:00 – PPT -  Overview of Database Migrations (Chad)
 
- - 10-10:15 min – Break
+ - 10-10:15 – Break
 
- - 10:15 – 11:15 60 min – Lab 1 – Migrate SQL and Mongo Data to Azure (Chad)
+ - 10:15 – 11:15 – Lab 1 – Migrate SQL and Mongo Data to Azure (Chad)
 
- - 11:15- 11:30 min -Break
+ - 11:15- 11:30 -Break
 
  - 11:30 – 12:15  – PPT - Containerizing and Orchestration of applications on Azure (Tim, Vadim)
 
