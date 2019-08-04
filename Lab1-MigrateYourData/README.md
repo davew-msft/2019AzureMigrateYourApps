@@ -20,11 +20,11 @@ You will need a few things in your environment setup for this lab.
 - A Mongo DB that you will migrate data from to Cosmos DB
 - A public Mongo DB will be made available to you to access remotely.
 - An Azure Cosmos DB instance
--   You will create this as part of the lab
+  -   	You will create this as part of the lab
 - The Microsoft Data Migration Assistant 
--   You will install this as part of the SQL VM creation
+  -   	You will install this as part of the SQL VM creation
 - An Azure Database Migration Service
-- 	You will create this as part of the setup 
+  - 		You will create this as part of the setup 
 
 
 
