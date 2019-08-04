@@ -249,39 +249,34 @@ Now that we know our database can be migrated we will use the Migration tool to 
 2. Find the resource of type 'Azure Database Migration Service' and click it.
 3. Back out to the overall resources view and open the `sqldms` or the `Azure Database Migration Service`.
 4. Click on `Create new migration project`
-
-- Project name: `tailwind`
-- Source server type: `SQL Server`
-- Target server type: `Azure SQL Database `
-- Type of activity: `Offline data migration`
-- Click Save
-
-1. Click `Create and run activity`
+5. Project name: `tailwind`
+6. Source server type: `SQL Server`
+7. Target server type: `Azure SQL Database `
+8. Type of activity: `Offline data migration`
+9. Click Save
+10. Click `Create and run activity`
 
 ##### Migration Wizard
 
-1. Source Detail
+1. Source Detai
+   1. Source SQL Server Instance Name: The IP Address of your SQL Server VM
+   2. Authentication type: `SQL Authentication`
+   3. User: migrateadmin
+   4. Password: 'AzureMigrateTraining2019#'
+   5. Uncheck the encrypt connection box
+2. Select Target
+   1. Full name of the Azure SQL instance
+   2. Authentication type: `SQL Authentication'
+   3. User: migrateadmin
+   4. Password: 'AzureMigrateTraining2019#'
+3. Click save
+4. Select `tailwind` database from the source
+5. Select Target Database
+6. Select all tables.
+7. Give a name to the migration activity and don't validate the database.
+8. Run the migration
 
-- Source SQL Server Instance Name: The IP Address of your SQL Server VM
-- Authentication type: `SQL Authentication`
-- User: migrateadmin
-- Password: 'AzureMigrateTraining2019#'
-- Uncheck the encrypt connection box
-- Select Target
-- Full name of the Azure SQL instance
-
-- Authentication type: `SQL Authentication`
-- User: migrateadmin
-- Password: 'AzureMigrateTraining2019#'
-- Click save
-
-1. Select `tailwind` database from the source
-2. Select Target Database
-3. Select all tables.
-4. Give a name to the migration activity and don't validate the database.
-5. Run the migration
-
-Once complete you all your data will be migrated from the VM instance of SQL to Azure SQL DB.  You can check to see the data is there by using the portal based query tool.
+**<u>Congratulations!</u>**  You have successfully migrated from the VM instance of SQL to Azure SQL DB!  You can check to see the data is there by using the portal based query tool.
 
 1. Click on your resource group
 2. Click on your Azure SQL DB database
@@ -290,9 +285,9 @@ Once complete you all your data will be migrated from the VM instance of SQL to 
 5. Expand tables - you should see all your tables.
 6. Run - 'select * from inventory' and you should see all your inventory data.
 
-### Lab 1 - Migrate On-Premises MongoDB to Azure Cosmos DB
+### Lab 2 - Migrate On-Premises MongoDB to Azure Cosmos DB
 
-Here we are moving an on-premises MongoDB (as represented in this session by an Azure Linux VM running MongoDB) to Azure Cosmos DB using native MongoDB commands.
+The next step is to get the product database migrated to Azure.  Here we are moving an on-premises MongoDB (as represented in this session by an Azure Linux VM running MongoDB) to Azure Cosmos DB using native MongoDB commands.
 
 1) Click 'New Session' Icon in the command shell toolbar.
 
