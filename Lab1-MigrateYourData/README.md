@@ -18,7 +18,8 @@ You will need a few things in your environment setup for this lab.
   - You will create this as part of the lab
 
 - A Mongo DB that you will migrate data from to Cosmos DB
-- A public Mongo DB will be made available to you to access remotely.
+  - A public Mongo DB will be made available to you to access remotely.
+- A Linux VM to run the MongoDB dump/restore commands from 
 - An Azure Cosmos DB instance
   - You will create this as part of the lab
 - The Microsoft Data Migration Assistant 
@@ -155,6 +156,31 @@ We will now create a PaaS instance of SQL server to migrate our on-premises data
    4. Press 'Review and Create'
    5. Press 'Create'
 
+
+
+### Setup 5 - Create a Linux command line VM
+
+We need to have a Linux command line to run the MongoDB dump/restore command from.  We will quickly spin up a utility VM to do this from.
+
+1. From the Azure Portal Click on the Add resource button
+2. search for ubuntu
+3. Select Ubuntu Server 19.04
+   ![ubuntuVM](../images/ubuntuVM.png)
+4. Click Create
+5. Set Basic Properties
+   1. Resource Group - <Your Resource Group>
+   2. MV Name - <your prefix>LinuxVM
+   3. Size: Change to B2s
+   4. Authentication type - Password
+      1. username: 'migrateadmin'
+      2. password: 'AzureMigrateTraining2019#'
+   5. Inbound Port Rules
+      1. Allow Selected
+      2. SSH
+   6. Press Review + create
+      1. If you get a validation failed, press 'previous' then 'Review and Create' again.  This should clear the error.
+   7. Press Create
+
 ### Lab 1  -  Assess DB Migration Using the DB Migration Tool Migrate Using Azure Database Migration 
 
 The inventory service is hosted on a SQL server and served by an ASP.NET core website. The Inventory service determines the quantity of a unit that's currently in stock.  In this lab we will migrate the on premises SQL Server to an instance of SQL Azure DB.
@@ -270,8 +296,8 @@ Now that we know our database can be migrated we will use the Migration tool to 
    3. User: migrateadmin
    4. Password: 'AzureMigrateTraining2019#'
 3. Click save
-4. Select `tailwind` database from the source
-5. Select Target Database
+4. #### Select `tailwind` database from the source
+5. #### Select Target Database
 6. Select all tables.
 7. Give a name to the migration activity and don't validate the database.
 8. Run the migration
@@ -289,78 +315,106 @@ Now that we know our database can be migrated we will use the Migration tool to 
 
 The next step is to get the product database migrated to Azure.  Here we are moving an on-premises MongoDB (as represented in this session by an Azure Linux VM running MongoDB) to Azure Cosmos DB using native MongoDB commands.
 
-1) Launch a new Azure Command Shell.  Click 'New Session' Icon in the command shell toolbar.
+#### Connect to the MongoDB Linux VM
 
->
-2) You will need to install the Linux VM's RSA certificate using the following commands.
-ssh-keygen will generate a new private / pubilc key for you.  You can overwrite the existing key if it warns you that it allready existes.  
+We have a shared Linux VM that everyone can connect to in order to get a dump of data to put into the Cosmos DB we created.  The first thing to do is to get a remote console to that VM via SSH.
 
-The AZ VM User comamand will use the Azure shell commands to install the public key into the Linux VM.
-> ```language-bash
-> $RESOURCE_GROUP_NAME=<WHATEVER YOU USED ABOVE>
-> $MONGO_VM_NAME=mongo
-> ssh-keygen
-> az vm user update -u azureuser --ssh-key-value "$(< ~/.ssh/id_rsa.pub)" -g $RESOURCE_GROUP_NAME -n $MONGO_VM_NAME
-> ```
+1. Launch a new Azure Command Shell.  You can either:
+   1. Press the shell icon in the Azure Portal, as in the setup for the Cosmos DB
+   2. Open a new browser tab to:  http://shell.azure.com for a full screen experience
+2. Connect to your Linux Shell VM created in the setup
+   1. SSH migrateadmin@<VM IP>
+   2. Password: 'AzureMigrateTraining2019#'
 
-During this demo we will be using the native MongoDB commands:
+#### Export the MongoDB Data
 
-* `mongodump` to get the data out of the source MongoDB
-* `mongorestore` to get the data into Azure Cosmos DB
+1. We need to have the MongoDB client tools.  Install the Mogo Client tools with the following command:
 
-We can now continue to connect to the Mongo VM and migrate it's data to Cosmos DB.
+   1. ```
+      sudo apt install mongodb-clients
+      ```
 
-1. Find out the IP address of the Linux VM.
-  * Go into the Azure portal
-  * Click on the `Resource Groups` on the left hand menu
-  * Click on your resoruce group you used when you ran the setup.sh command in the setup steps
-  * Find the item called `mongoPublicIP`, click on it, and copy the element called `IP address'
-  * Save this IP in Notepad or somewhere you can get to it later
+      
 
-2. Find out the host name of the Azure Cosmos DB
-  * Click on the `Resource Groups` on the left hand menu
-  * Click on the resrouce group you used when you created the Cosmos DB
-  * Click on the Cosmos DB account
-  * Make sure it's status is 'Online', if not you will have to wait for it to complete
-  * Click `Connection String` on the right hand side, then copy the value from `Host`, `Username`, `Primary password`, and `Primary Connection String` and save them in Notepad or other handy place
+2. Dump the data from the remote MongoDB with the following Command
 
-3. ssh into the Linux VM: `ssh azureuser@MONGO-IP-ADDRESS`
-4. Run a mongo dump, which exports all the data to a file: `mongodump --collection inventory --db tailwind`
-5. Then change into the directory that contains all dump files from the MongoDB server: `cd dump`
-6. Change into the directory that contains our particular dump file: `cd tailwind`
-7. Run a mongo restore:
+   1. ```
+      mongodump --host 52.179.133.51 --username=labuser --password=MTCAzure2019# --db=tailwind
+      ```
+
+3. Check to see that you successfully dumped the data
+
+   1. Check that the directory has a dump and tailwind directory that contains the .bson and metadata files.  Run the following ls commands:
+      ![CheckMongoDump](../images/CheckMongoDump.png)
+
+
+
+#### Check the Cosmos DB provisioning
+
+Now that we have a copy of the data locally, we can use the mongorestore command to load that data into our Cosmos DB instance we created.
+
+First check to make sure the Cosmos DB instance was created successfully.  
+
+1. In the Azure portal click on the resource groups on the left toolbar
+2. Click on your Resource Group.
+3. You should see a resource of type 'Azure Cosmos DB account' - Click that
+4. Click on 'Data Explorer' on the left navigation.  You should see something the following:
+   ![cosmosempty](../images/cosmosempty.png)
+5. Notice the collections is empty.  This is OK.  It shows we have a Cosmos Instance and after we restore we should have our product data
+
+
+
+#### Restore the Data to our Cosmos DB
+
+1. We will create a few environment variables to store Cosmos DB information for our restore command.
+
+2. You will need the Cosmos DB username and password.  
+
+   1. Navigate to the Cosmos DB account in the Azure portal.
+   2. Click on the Connection String option on the left navigation
+   3. The username and password for you Cosmos DB instance can be copied from here.
+
+3. Go back to the Azure shell where you have the SSH connection to your Linux VM
+
+4. Create the following environment variables in that shell
+
+   > ```language-bash
+   > $COSMOS_DB_NAME=<Host name from connection string properties>
+   > $COSMOS_USER=<username from connection string properties>
+   > $COSMOS_PWD=<primary password from connection string properties>
+   > ```
+
+   
+
+5. Make sure you are still in the /dump/tailwind directory still
+
+6. Copy and paste this command to run a mongo restore:
 
 ```language-bash
 mongorestore \
-    --host <COSMOS HOST ADDRESS>:10255 \
-    -u <COSMOS USER NAME> \
-    -p <COSMOS PASSWORD> \
+    --host $COSMOS_DB_NAME:10255 \
+    -u $COSMOS_USER \
+    -p $COSMOS_PWD \
     --ssl \
     --sslAllowInvalidCertificates \
     inventory.bson \
-    --numInsertionWorkersPerCollection 4 \
-    --batchSize 24 \
     --db tailwind \
     --collection inventory
 ```
 8. Go into your Azure Cosmos DB account and click on `Data Explorer`. Select the `tailwind` database.
 
-9. Expland the `tailwind` node, expand the `inventory` node, and select `Documents`
+9. Expand the `tailwind` node, expand the `inventory` node, and select `Documents`
 
-10. You should see the inventory item docuemnts are now in Cosmos DB
-
-### Demo 4 - Check SQL MI Status and Redeploy Web App's Container
-
-Now you can change the inventory's app settings to point at the new SQL Managed instance.
-
-The connection string will be of the format:
-
-```
-Server=tcp:40.114.36.51,1433;Initial Catalog=tailwind;User Id=USERNAME;Password=PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;
-```
+10. You should see the inventory item documents are now in Cosmos DB
 
 
-View the website to see it change.
+![cosmospopulated](../images/cosmospopulated.png)
+
+
+
+**Congratulations!**   You have now successfully moved both a SQL Server Database and a Mongo DB database to the Azure cloud!
+
+
 
 ## Learn More/Resources
 
@@ -375,21 +429,4 @@ View the website to see it change.
 
 
 
-Run the deploy.sh in the MIG20 repo
 
-On SQL Box
-   [Download backpac file](https://github.com/chadgms/2019AzureMigrateYourApps/blob/master/setupfiles/TailwindInventory.bacpac)
-   Restore the backpac file
-   [Download Data Migration Tool](https://www.microsoft.com/en-us/download/details.aspx?id=53595) and Install 
-
-On Linux Box
-    b.	Need to install Mongo on the Linux VM	(Link)
-i.	Update system software packages
-
-1. sudo apt update
-   ii.	Install Mongo
-2. sudo apt install mongodb
-   iii.	Check it is running
-3. sudo systemctl status mongodb
-
-Create a Database Migration Service inside Azure
