@@ -289,7 +289,7 @@ Now that we know our database can be migrated we will use the Migration tool to 
 
 The next step is to get the product database migrated to Azure.  Here we are moving an on-premises MongoDB (as represented in this session by an Azure Linux VM running MongoDB) to Azure Cosmos DB using native MongoDB commands.
 
-1) Click 'New Session' Icon in the command shell toolbar.
+1) Launch a new Azure Command Shell.  Click 'New Session' Icon in the command shell toolbar.
 
 >
 2) You will need to install the Linux VM's RSA certificate using the following commands.
