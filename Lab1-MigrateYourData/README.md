@@ -338,8 +338,8 @@ We have a shared Linux VM that everyone can connect to in order to get a dump of
 
 2. Dump the data from the remote MongoDB with the following Command
 
-   1. ```
-      mongodump --host 52.179.133.51 --username=labuser --password=MTCAzure2019# --db=tailwind
+   1. ```bash
+      mongodump --host 40.70.205.251 --username=labuser --password=AzureMigrateTraining2019# --db=tailwind --authenticationDatabase=tailwind
       ```
 
 3. Check to see that you successfully dumped the data
