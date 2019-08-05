@@ -19,7 +19,6 @@ You will need a few things in your environment setup for this lab.
 
 - A Mongo DB that you will migrate data from to Cosmos DB
   - A public Mongo DB will be made available to you to access remotely.
-- A Linux VM to run the MongoDB dump/restore commands from 
 - An Azure Cosmos DB instance
   - You will create this as part of the lab
 - The Microsoft Data Migration Assistant 
@@ -158,29 +157,6 @@ We will now create a PaaS instance of SQL server to migrate our on-premises data
 
 
 
-### Setup 5 - Create a Linux command line VM
-
-We need to have a Linux command line to run the MongoDB dump/restore command from.  We will quickly spin up a utility VM to do this from.
-
-1. From the Azure Portal Click on the Add resource button
-2. search for ubuntu
-3. Select Ubuntu Server 19.04
-   ![ubuntuVM](../images/ubuntuVM.png)
-4. Click Create
-5. Set Basic Properties
-   1. Resource Group - <Your Resource Group>
-   2. MV Name - <your prefix>LinuxVM
-   3. Size: Change to B2s
-   4. Authentication type - Password
-      1. username: 'migrateadmin'
-      2. password: 'AzureMigrateTraining2019#'
-   5. Inbound Port Rules
-      1. Allow Selected
-      2. SSH
-   6. Press Review + create
-      1. If you get a validation failed, press 'previous' then 'Review and Create' again.  This should clear the error.
-   7. Press Create
-
 ### Lab 1  -  Assess DB Migration Using the DB Migration Tool Migrate Using Azure Database Migration 
 
 The inventory service is hosted on a SQL server and served by an ASP.NET core website. The Inventory service determines the quantity of a unit that's currently in stock.  In this lab we will migrate the on premises SQL Server to an instance of SQL Azure DB.
@@ -317,28 +293,37 @@ The next step is to get the product database migrated to Azure.  Here we are mov
 
 #### Connect to the MongoDB Linux VM
 
-We have a shared Linux VM that is simulating the production MogoDB product database.  We will connect remotely to this server in order to get a dump of data to put into the Cosmos DB.   The great thing about this is the Cosmos DB can use standard MongoDB tools.
+We have a shared Linux VM that is simulating the production MogoDB product database.  We will connect remotely to this server in order to get a dump of data to put into the Cosmos DB.   The great thing about this is that Cosmos DB can use standard MongoDB tools.
 
-The first thing to do is to get a remote console to that VM via SSH.
+We can do all this from the Azure Bash Shell
 
 1. Launch a new Azure Command Shell.  You can either:
    1. Press the shell icon in the Azure Portal, as in the setup for the Cosmos DB
    2. Open a new browser tab to:  http://shell.azure.com for a full screen experience
-2. Connect to your Linux Shell VM created in the setup
-   1. SSH migrateadmin@<VM IP>
-   2. Password: 'AzureMigrateTraining2019#'
+   
+2. Download the MongoDB client tools 
+
+   ```bash
+   wget https://repo.mongodb.org/apt/ubuntu/dists/xenial/mongodb-org/4.0/multiverse/binary-amd64/mongodb-org-tools_4.0.11_amd64.deb
+   ```
+
+3.  Unpack the downloaded zip file 
+
+   ```
+   dpkg-deb -R mongodb-org-tools_4.0.11_amd64.deb ~/mongotools
+   ```
+
+4. Set the path to include the tools  
+
+   ```
+   export PATH=$PATH:~/mongotools/usr/bin
+   ```
+
+5. You now have the MongoDB client tools available to you.
 
 #### Export the MongoDB Data
 
-1. We need to have the MongoDB client tools.  Install the Mogo Client tools with the following command:
-
-   1. ```
-      sudo apt install mongodb-clients
-      ```
-
-      
-
-2. Dump the data from the remote MongoDB with the following Command
+1. Dump the data from the remote MongoDB with the following Command
 
    1. ```bash
       mongodump --host 40.70.205.251 --username=labuser --password=AzureMigrateTraining2019# --db=tailwind --authenticationDatabase=tailwind
