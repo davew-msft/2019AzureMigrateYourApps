@@ -5,3 +5,41 @@ This folder contains files needed to setup the labs.
 **inventory.bson** - The backup file for the product MongoDB database
 
 **inventory.metadata.json** - Metadata file for the product MongoDB backup
+
+
+
+This material was original created for a set of events running at the Microsoft Technology Centers Sept - Dec 2019.  During this time a shared Mongo DB machine was running for Lab 1.  Students used this as a shared resource to connect to and practice migrating data from an on premise MongoDB to Cosmos DB.
+
+If that VM is no longer asscessable you can create one yourself by the following steps:
+
+1. Create an Azure VM based on a MongoDB instance.  The one we used originally was the Jetware Image.
+
+2. Make sure the DB service is running.
+
+3. Install the MongoDB tools if needed
+
+   1. sudo apt install mongo-clients
+
+4. clone this repo that has the inventory.bson files in the setupfiles directory
+
+5. cd to the setupfiles directory
+
+6. Restore the inventory database
+
+   1. ```bash
+      mongorestore inventory.bson --db=tailwind
+      ```
+
+      
+
+7. Create the user the lab has the students connect to
+
+   1. ```bash
+      db.createUser({user: "labuser", pwd:"AzureMigrateTraining2019#", roles:[{role: "read", db:"tailwind"}]})
+      ```
+
+8. Open the firewall ports on the VM for:
+
+   1. SSH: 22
+   2. MongoDB:  27017
+
