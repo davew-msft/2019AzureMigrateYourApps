@@ -43,3 +43,5 @@ If that VM is no longer asscessable you can create one yourself by the following
    1. SSH: 22
    2. MongoDB:  27017
 
+9. Make sure you update your students to use the IP of your new machine.  You may also want to make that a static IP address.
+
