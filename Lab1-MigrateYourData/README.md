@@ -157,7 +157,7 @@ We will now create a PaaS instance of SQL server to migrate our on-premises data
 
 
 
-### Lab 1  -  Assess DB Migration Using the DB Migration Tool Migrate Using Azure Database Migration 
+### Exercise 1  -  Assess DB Migration Using the DB Migration Tool Migrate Using Azure Database Migration 
 
 The inventory service is hosted on a SQL server and served by an ASP.NET core website. The Inventory service determines the quantity of a unit that's currently in stock.  In this lab we will migrate the on premises SQL Server to an instance of SQL Azure DB.
 
@@ -287,7 +287,7 @@ Now that we know our database can be migrated we will use the Migration tool to 
 5. Expand tables - you should see all your tables.
 6. Run - 'select * from inventory' and you should see all your inventory data.
 
-### Lab 2 - Migrate On-Premises MongoDB to Azure Cosmos DB
+### Exercise 2 - Migrate On-Premises MongoDB to Azure Cosmos DB
 
 The next step is to get the product database migrated to Azure.  Here we are moving an on-premises MongoDB (as represented in this session by an Azure Linux VM running MongoDB) to Azure Cosmos DB using native MongoDB commands.
 
