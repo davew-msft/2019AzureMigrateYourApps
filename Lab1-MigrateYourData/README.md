@@ -317,7 +317,9 @@ The next step is to get the product database migrated to Azure.  Here we are mov
 
 #### Connect to the MongoDB Linux VM
 
-We have a shared Linux VM that everyone can connect to in order to get a dump of data to put into the Cosmos DB we created.  The first thing to do is to get a remote console to that VM via SSH.
+We have a shared Linux VM that is simulating the production MogoDB product database.  We will connect remotely to this server in order to get a dump of data to put into the Cosmos DB.   The great thing about this is the Cosmos DB can use standard MongoDB tools.
+
+The first thing to do is to get a remote console to that VM via SSH.
 
 1. Launch a new Azure Command Shell.  You can either:
    1. Press the shell icon in the Azure Portal, as in the setup for the Cosmos DB
