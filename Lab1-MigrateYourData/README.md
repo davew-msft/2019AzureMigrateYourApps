@@ -54,7 +54,7 @@ In many cases you need to create a resource that has a unique name.  The easiest
    1. Resource Group: Use the Resource Group you were assigned
    2. VM Name: '<prefix>OnPremSQL'
    3. Region: 'East US 2'
-   4. Change Size to: D4 v3
+   4. Change Size to: D2 v3
    5. Username: 'migrateadmin'
    6. Password: 'AzureMigrateTraining2019#'
    7. Inbound Port Rules
