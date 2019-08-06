@@ -6,9 +6,7 @@ Agenda
 
  - 9:30 – 10:00 – PPT -  Overview of Database Migrations (Chad)
 
- - 10-10:15 – Break
-
- - 10:15 – 11:15 – Lab 1 – Migrate SQL and Mongo Data to Azure (Chad)
+ - 10:00 – 11:15 – Lab 1 – Migrate SQL and Mongo Data to Azure (Chad)
 
  - 11:15- 11:30 -Break
 
