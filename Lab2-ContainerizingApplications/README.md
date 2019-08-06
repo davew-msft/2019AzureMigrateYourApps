@@ -188,7 +188,7 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 4. Here you will see some default application setting.  We will add a few more.
 5. Click + New application setting to add each of these NAME/VALUE pairs
    1. Name: COLLECTION_NAME   Value: inventory
-   2. Name: DB_CONNECTION_STRING  Value:  <paste in the Cosmos DB connection String>
+   2. Name: DB_CONNECTION_STRING  Value:  (paste in the Cosmos DB connection String)
 
 #### Inventory Service
 
