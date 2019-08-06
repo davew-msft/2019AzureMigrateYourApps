@@ -32,6 +32,8 @@ You will need a few things in your environment setup for this lab.
 
 In many cases you need to create a resource that has a unique name.  The easiest way to do this is to create a prefix that you can append to the front of the standard resource names.    As an exmple, Bill needs a unique prefix so he decided to use his name and the last four digits of his phone number.  So, his prefix is 'Bill3367'.  Any resources that need to be unique he can now put this in front of the standard name and it should be unique.  Come up with a prefix you can use for all the labs.
 
+Whenever you see (prefix) in the labs, preplace that with the prefix you come up with.
+
 ### Setup 1 - Create SQL VM
 
 1. Login to the Azure Portal http://portal.azure.com
@@ -51,7 +53,7 @@ In many cases you need to create a resource that has a unique name.  The easiest
 6. Set the following Basic Parameters
 
    1. Resource Group: Use the Resource Group you were assigned
-   2. VM Name: '<prefix>OnPremSQL'
+   2. VM Name: '(prefix)OnPremSQL'
    3. Region: 'East US 2'
    4. Change Size to: D2 v3
    5. Username: 'migrateadmin'
@@ -75,17 +77,17 @@ Your SQL VM is now provisioning.  It will take a few minutes to provision, so we
 
 ### Setup 2 - Database Migration Service
 
-In this exercise we will create an instance of the Azure Database Migration Service.  This service allows you to automat the migration of data from on premise environments to Azure.
+In this exercise we will create an instance of the Azure Database Migration Service.  This service allows you to automate the migration of data from on premise environments to Azure.
 
 1. In the Azure Portal click the add new resource button
 2. Type 'Azure Database Migration' in the search bar
 3. Select the 'Azure Database Migration Service'
 4. Press 'Create'
 5. Enter Parameters
-   1. Service Name: '<prefix>MigrationService'
+   1. Service Name: '(prefix)MigrationService'
    2. Resource Group: Your assigned Resource Group
    3. Location: East US 2
-   4. Virtual Network ->  <resource group>-vnet/default
+   4. Virtual Network ->  <resource group> -vnet/default
 6. Pricing Tier: Standard 1v core
 7. Press Create
 
@@ -114,7 +116,7 @@ Follow these steps:
 ```language-bash
 RESOURCE_GROUP_COSMOS='<Your resoruce group name'
 LOCATION_COSMOS='eastus2'
-ACCOUNT_NAME_COSMOS='<prefix>migrationcosmos'
+ACCOUNT_NAME_COSMOS='(prefix)migrationcosmos'
 ```
 5. Then create the Azure Cosmos DB Account and place it into the resource group you just created.  Copy the below command and execute it.  
 
@@ -122,7 +124,7 @@ ACCOUNT_NAME_COSMOS='<prefix>migrationcosmos'
 az cosmosdb create --resource-group $RESOURCE_GROUP_COSMOS --name $ACCOUNT_NAME_COSMOS --kind MongoDB --locations regionName=$LOCATION_COSMOS
 ```
 
-This will take several minutes to spin up. When it is finished (you'll see a bunch of JSON indicating it's done) you can go into the portal and click on `Resource Groups` from the left hand side.
+This will take several minutes to spin up. When it is finished (you'll see a bunch of JSON indicating it's done) you can go into the portal and click on `Resource Groups` from the left hand side.  Click on your resoruce group and look for your Cosmos DB account.
 
 While you wait for your Cosmos DB instance to spin up you can move on to the creation of the SQL Instance.
 
@@ -145,9 +147,9 @@ We will now create a PaaS instance of SQL server to migrate our on-premises data
 5. Basics
 
    1. Resource Group: Set to your assigned resource group
-   2. Database Name: <your prefix>SQLDB
+   2. Database Name: (prefix)SQLDB
    3. Server - Create New
-      1. Server Name: <prefix>SQLServer
+      1. Server Name: (prefix)sqlserver
       2. Server Admin: 'migrateadmin'
       3. Password: 'AzureMigrateTraining2019#'
       4. Location: US East 2
@@ -172,14 +174,14 @@ By now the SQL Server VM you created should be finished provisioning.  We need t
 2. Click on your Resource Group
    1. You should now see all the resources we created in the exercises above
 3. Click on your SQL On Prem Virtual Machine you created
-4. Click on Connect->download the RDP file and open that to RDP to the VM
+4. Click on Connect->download the RDP file and open that to RDP to the VM, login with the migrateadmin user we created in Setup 1. 
 5. Update IE Security - The local server manager should launch on first login.
    1. Press Local Server on the left side
    2. Press the IE Enhanced Security Configuration  on the right
    3. Set that off for Administrator
    4. Close the Server Manager
 6. Download and restore the database.  The inventory database is stored in the repository as a SQL .bakpac file needs to be restored.
-   1. Download the backup file from the setupfiles directory of this Github Repo. https://github.com/chadgms/2019AzureMigrateYourApps/tree/master/setupfiles
+   1. Download the TailwindInventory.bacpac backup file from the setupfiles directory of this Github Repo. https://github.com/chadgms/2019AzureMigrateYourApps/tree/master/setupfiles
    2. Click the start menu and type 'SQL Server Management'
    3. Launch the SQL Server Management Studio and connect to the local SQL instance.
    4. Right click on the Database folder and select 'Import Data-tier Application'
@@ -192,7 +194,10 @@ By now the SQL Server VM you created should be finished provisioning.  We need t
     1. https://www.microsoft.com/en-us/download/details.aspx?id=53595
 11. Install the Data Migration Assistant
 
+We are now all set to migrate our SQL Database.  We have a restored copy of the data on this local server and we have the migration assistant ready to help us migrate the data to an Azure SQL Instnace.
+
 #### Assessment
+First we need to do an assessment.  The tool will check the local db for compatibility issues.
 
 1. Open the Data Migration Assistant from the desktop icon
 2. Create a new project
@@ -222,7 +227,7 @@ Now that we know our database can be migrated we will use the Migration tool to 
 - Project Name: `tailwind`
 - Source server type: `SQL server`
 - Target server type: `Azure SQL Database`
-- Migration Scope: Schema Only
+- Migration Scope: `Schema Only`
 
 1. Click `Create`
 2. Source Server: localhost
@@ -249,19 +254,17 @@ Now that we know our database can be migrated we will use the Migration tool to 
 
 1. In the Azure Portal click on the resource group icon and select your resource group.
 2. Find the resource of type 'Azure Database Migration Service' and click it.
-3. Back out to the overall resources view and open the `sqldms` or the `Azure Database Migration Service`.
 4. Click on `Create new migration project`
 5. Project name: `tailwind`
 6. Source server type: `SQL Server`
 7. Target server type: `Azure SQL Database `
 8. Type of activity: `Offline data migration`
-9. Click Save
 10. Click `Create and run activity`
 
 ##### Migration Wizard
 
-1. Source Detai
-   1. Source SQL Server Instance Name: The IP Address of your SQL Server VM
+1. Source Detail
+   1. Source SQL Server Instance Name: The IP Address of your SQL Server VM(you can open the portal in a new tab, click on your VM and get the IP )
    2. Authentication type: `SQL Authentication`
    3. User: migrateadmin
    4. Password: 'AzureMigrateTraining2019#'
@@ -301,7 +304,7 @@ We can do all this from the Azure Bash Shell
    1. Press the shell icon in the Azure Portal, as in the setup for the Cosmos DB
    2. Open a new browser tab to:  http://shell.azure.com for a full screen experience
    
-2. Download the MongoDB client tools 
+2. Download the MongoDB client tools (you can paste into the shell with a right click)
 
    ```bash
    wget https://repo.mongodb.org/apt/ubuntu/dists/xenial/mongodb-org/4.0/multiverse/binary-amd64/mongodb-org-tools_4.0.11_amd64.deb
