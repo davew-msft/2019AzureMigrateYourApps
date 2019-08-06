@@ -48,7 +48,7 @@ The source code for all three projects are in this repo.  We will first pull it 
 2. Type 'Container Registry' in the search bar - press enter
 3. Select Create
 4. Fill in properties
-   1. Registry name: <prefix>acr
+   1. Registry name: (prefix)acr
    2. Location: default
    3. Admin User: Enable
    4. SKU: Standard
@@ -58,7 +58,7 @@ The source code for all three projects are in this repo.  We will first pull it 
 
 ## Activity 1 - Build your services for docker containers
 
-Now we get into the really exciting stuff!  We have an existing code base for our two services and web front end.  These steps will compile the code, put them in a docker container and put the container image into the container registry.  Typically you would need Docker installed and configured.  Azure Container Registry Service can do the build and containerization for us though all on the cloud.  We just need to point it to our source code.
+Now we get into the really exciting stuff!  We have an existing code base for our two services and web front end.  These steps will compile the code, put them in a docker container and put the container image into the container registry.  Typically you would need Docker installed and configured.  Azure Container Registry Service can do the build and containerization for us all on the cloud!  We just need to point it to our source code.
 
 ### Build the code and deploy to ACR
 
@@ -104,7 +104,7 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
 
 ### Create Web Apps
 
-Now that we have compiled code in containers stored in the registry we now need to deploy them to a compute platform.  In this lab we are going to use Azure Web App for Containers, but here are many ways to run containers in Azure.  Your instructor should have explored other options.  See reference links below for more information
+Now that we have compiled code in containers stored in the registry we now need to deploy them to a compute platform.  In this lab we are going to use Azure Web App for Containers, but there are many ways to run containers in Azure.  Your instructor should have explored other options.  See reference links below for more information.
 
 #### Product Service App
 
@@ -112,7 +112,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 2. Search for 'Web app for containers' and press enter
 3. Press Create
 4. Fill out parameters as follows
-   1. App Name: <prefix>product
+   1. App Name: (prefix)product
    2. Resource Group: <your resource grup>
    3. OS: Linux
    4. Service Plan: new default
@@ -130,7 +130,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 2. Search for 'Web app for containers' and press enter
 3. Press Create
 4. Fill out parameters as follows
-   1. App Name: <prefix>inventory
+   1. App Name: (prefix)inventory
    2. Resource Group: <your resource grup>
    3. OS: Linux
    4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.
@@ -148,7 +148,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 2. Search for 'Web app for containers' and press enter
 3. Press Create
 4. Fill out parameters as follows
-   1. App Name: <prefix>frontend
+   1. App Name: (prefix)frontend
    2. Resource Group: <your resource grup>
    3. OS: Linux
    4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.
@@ -172,7 +172,7 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 
 ##### Get the Cosmos DB connection string
 
-1. Click on resource groups-> <your resource group>
+1. Click on resource groups-> (your resource group)
 
 2. ##### Click on your Cosmos DB Account
 
@@ -182,7 +182,7 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 
 ##### Set the Web App Properties
 
-1. Click on resource groups -> <your resource group>
+1. Click on resource groups -> (your resource group)
 2. Click on your product service resource of type 'App Service'
 3. Click Configuration on the left nav bar
 4. Here you will see some default application setting.  We will add a few more.
@@ -196,14 +196,14 @@ The inventory service needs to be pointed to the SQL Database that now lives in 
 
 ##### Get the Azure SQL Connection String
 
-1. Click on resource groups -> <your resource group>
+1. Click on resource groups -> (your resource group)
 2. Click on the tailwind database (resource type: SQL database)
 3. Click on connection strings on the left navigation pane
 4. Copy the ADO.NET connection string
 
 ##### Set the Web App Properties
 
-1. Click on resource groups -> <your resource group>
+1. Click on resource groups -> (your resource group)
 2. Click on your inventory service resource of type 'App Service'
 3. Click Configuration on the left nav bar
 4. Here we will add a Connection String 
@@ -225,18 +225,18 @@ The last thing we need to do is to tell our front end web site the URL's to our 
 
 You can get the base URL's for inventory and product services by clicking on their overview page and looking at the URL property on the right hand side.
 
-1. Click on resource groups -> <your resource group>
+1. Click on resource groups -> (your resource group)
 2. Click on your inventory or product service resource of type 'App Service'
 3. Take note / copy the URL 
 
 ##### Set Front End Web App Properties
 
-1. Click on resource groups -> <your resource group>
+1. Click on resource groups -> (your resource group)
 2. Click on your front end resource of type 'App Service'
 3. Click Configuration on the left nav bar
 4. Click + New application setting to add each of these NAME/VALUE pairs
-   1. Name: INVENTORY_SERVICE_BASE_URL   Value: <your inventory base url>
-   2. Name: PRODUCT_SERVICE_URL   Value:  <your product service base url>
+   1. Name: INVENTORY_SERVICE_BASE_URL   Value: (your inventory base url)
+   2. Name: PRODUCT_SERVICE_URL   Value:  (your product service base url)
 
 
 
