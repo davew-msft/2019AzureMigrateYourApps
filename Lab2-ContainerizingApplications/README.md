@@ -178,7 +178,7 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 
 3. Click on the Connection String option in the left toolbar
 
-4. Copy the Primary Connection String
+4. Copy the Primary Connection String (NOT the primary password)
 
 ##### Set the Web App Properties
 
