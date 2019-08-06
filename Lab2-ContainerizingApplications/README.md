@@ -240,6 +240,7 @@ You can get the base URL's for inventory and product services by clicking on the
 4. Click + New application setting to add each of these NAME/VALUE pairs
    1. Name: INVENTORY_SERVICE_BASE_URL   Value: (your inventory base url)
    2. Name: PRODUCT_SERVICE_BASE_URL   Value:  (your product service base url)
+5. Press Save
 
 
 
