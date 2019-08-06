@@ -113,7 +113,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 3. Press Create
 4. Fill out parameters as follows
    1. App Name: (prefix)product
-   2. Resource Group: <your resource grup>
+   2. Resource Group: (your resource group)
    3. OS: Linux
    4. Service Plan: new default
    5. Configure Container:
@@ -131,7 +131,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 3. Press Create
 4. Fill out parameters as follows
    1. App Name: (prefix)inventory
-   2. Resource Group: <your resource grup>
+   2. Resource Group: (your resource group)
    3. OS: Linux
    4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.
    5. Configure Container:
@@ -149,7 +149,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 3. Press Create
 4. Fill out parameters as follows
    1. App Name: (prefix)frontend
-   2. Resource Group: <your resource grup>
+   2. Resource Group: (your resource group)
    3. OS: Linux
    4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.
    5. Configure Container:
