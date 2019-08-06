@@ -32,6 +32,8 @@ You will need a few things in your environment setup for this lab.
 
 In many cases you need to create a resource that has a unique name.  The easiest way to do this is to create a prefix that you can append to the front of the standard resource names.    As an exmple, Bill needs a unique prefix so he decided to use his name and the last four digits of his phone number.  So, his prefix is 'Bill3367'.  Any resources that need to be unique he can now put this in front of the standard name and it should be unique.  Come up with a prefix you can use for all the labs.
 
+Whenever you see <prefix> in the labs, preplace that with the prefix you come up with.
+
 ### Setup 1 - Create SQL VM
 
 1. Login to the Azure Portal http://portal.azure.com
@@ -75,7 +77,7 @@ Your SQL VM is now provisioning.  It will take a few minutes to provision, so we
 
 ### Setup 2 - Database Migration Service
 
-In this exercise we will create an instance of the Azure Database Migration Service.  This service allows you to automat the migration of data from on premise environments to Azure.
+In this exercise we will create an instance of the Azure Database Migration Service.  This service allows you to automate the migration of data from on premise environments to Azure.
 
 1. In the Azure Portal click the add new resource button
 2. Type 'Azure Database Migration' in the search bar
@@ -85,7 +87,7 @@ In this exercise we will create an instance of the Azure Database Migration Serv
    1. Service Name: '<prefix>MigrationService'
    2. Resource Group: Your assigned Resource Group
    3. Location: East US 2
-   4. Virtual Network ->  <resource group>-vnet/default
+   4. Virtual Network ->  <resource group> -vnet/default
 6. Pricing Tier: Standard 1v core
 7. Press Create
 
@@ -122,7 +124,7 @@ ACCOUNT_NAME_COSMOS='<prefix>migrationcosmos'
 az cosmosdb create --resource-group $RESOURCE_GROUP_COSMOS --name $ACCOUNT_NAME_COSMOS --kind MongoDB --locations regionName=$LOCATION_COSMOS
 ```
 
-This will take several minutes to spin up. When it is finished (you'll see a bunch of JSON indicating it's done) you can go into the portal and click on `Resource Groups` from the left hand side.
+This will take several minutes to spin up. When it is finished (you'll see a bunch of JSON indicating it's done) you can go into the portal and click on `Resource Groups` from the left hand side.  Click on your resoruce group and look for your Cosmos DB account.
 
 While you wait for your Cosmos DB instance to spin up you can move on to the creation of the SQL Instance.
 
@@ -145,9 +147,9 @@ We will now create a PaaS instance of SQL server to migrate our on-premises data
 5. Basics
 
    1. Resource Group: Set to your assigned resource group
-   2. Database Name: <your prefix>SQLDB
+   2. Database Name: (prefix)SQLDB
    3. Server - Create New
-      1. Server Name: <prefix>SQLServer
+      1. Server Name: (prefix)SQLServer
       2. Server Admin: 'migrateadmin'
       3. Password: 'AzureMigrateTraining2019#'
       4. Location: US East 2
