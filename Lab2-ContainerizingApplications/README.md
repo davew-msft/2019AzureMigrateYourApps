@@ -210,7 +210,7 @@ The inventory service needs to be pointed to the SQL Database that now lives in 
 4. Here we will add a Connection String 
 5. Click + New connection string 
    1. Name: 'InventoryContext'
-   2. Value:  <paste in the SQL connection String>
+   2. Value:  (paste in the SQL connection String>)
    3. Update the SQL Connection string:
       1. User ID='migrateadmin'
       2. Password='AzureMigrateTraining2019#'
