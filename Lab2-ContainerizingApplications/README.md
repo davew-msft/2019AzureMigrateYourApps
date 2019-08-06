@@ -215,6 +215,8 @@ The inventory service needs to be pointed to the SQL Database that now lives in 
       1. User ID='migrateadmin'
       2. Password='AzureMigrateTraining2019#'
    4. Type: SQLAzure
+6. Press OK
+7. Press Save
 
 
 
