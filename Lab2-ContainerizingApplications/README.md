@@ -248,7 +248,7 @@ You can get the base URL's for inventory and product services by clicking on the
 
 That is is it!  We are done migrating the data and deploying a modern application through containers.  The last thing to do is to run the app and make sure it works!
 
-1. Click on resource groups -> <your resource group>
+1. Click on resource groups -> (your resource group)
 2. Click on your front end service resource of type 'App Service'
 3. Click on the URL in the right properties pane
 
