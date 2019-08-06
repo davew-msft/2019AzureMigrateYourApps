@@ -155,7 +155,7 @@ Now that we have compiled code in containers stored in the registry we now need 
    5. Configure Container:
       1. Pick Azure Container Registry
       2. Pick your ACR
-      3. Select the inventory-service image
+      3. Select the frontend-service image
       4. latest tag
       5. Press Apply
    6. Press Create
