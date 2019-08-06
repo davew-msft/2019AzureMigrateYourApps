@@ -32,7 +32,7 @@ You will need a few things in your environment setup for this lab.
 
 In many cases you need to create a resource that has a unique name.  The easiest way to do this is to create a prefix that you can append to the front of the standard resource names.    As an exmple, Bill needs a unique prefix so he decided to use his name and the last four digits of his phone number.  So, his prefix is 'Bill3367'.  Any resources that need to be unique he can now put this in front of the standard name and it should be unique.  Come up with a prefix you can use for all the labs.
 
-Whenever you see <prefix> in the labs, preplace that with the prefix you come up with.
+Whenever you see (prefix) in the labs, preplace that with the prefix you come up with.
 
 ### Setup 1 - Create SQL VM
 
@@ -53,7 +53,7 @@ Whenever you see <prefix> in the labs, preplace that with the prefix you come up
 6. Set the following Basic Parameters
 
    1. Resource Group: Use the Resource Group you were assigned
-   2. VM Name: '<prefix>OnPremSQL'
+   2. VM Name: '(prefix)OnPremSQL'
    3. Region: 'East US 2'
    4. Change Size to: D2 v3
    5. Username: 'migrateadmin'
@@ -84,7 +84,7 @@ In this exercise we will create an instance of the Azure Database Migration Serv
 3. Select the 'Azure Database Migration Service'
 4. Press 'Create'
 5. Enter Parameters
-   1. Service Name: '<prefix>MigrationService'
+   1. Service Name: '(prefix)MigrationService'
    2. Resource Group: Your assigned Resource Group
    3. Location: East US 2
    4. Virtual Network ->  <resource group> -vnet/default
@@ -116,7 +116,7 @@ Follow these steps:
 ```language-bash
 RESOURCE_GROUP_COSMOS='<Your resoruce group name'
 LOCATION_COSMOS='eastus2'
-ACCOUNT_NAME_COSMOS='<prefix>migrationcosmos'
+ACCOUNT_NAME_COSMOS='(prefix)migrationcosmos'
 ```
 5. Then create the Azure Cosmos DB Account and place it into the resource group you just created.  Copy the below command and execute it.  
 
