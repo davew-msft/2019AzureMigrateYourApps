@@ -1,5 +1,3 @@
-#### 
-
 # Lab2 - Containerizing  applications on Azure
 
 ## Lab Goals
@@ -94,9 +92,19 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
 
 6. Now the front end web site.
 
-   ```
-   az acr build -t frontend-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend
-   ```
+   1. Before we build the site we need to make sure that execute permission is set on the Docker configuration file:
+
+      ```bash
+      chmod +x ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend/docker-startup.sh
+      ```
+
+   2. Now we build the code 
+
+      ```
+      az acr build -t frontend-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend
+      ```
+
+      
 
 7. Verify it exists in the ACR same as before
 
@@ -188,7 +196,22 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 4. Here you will see some default application setting.  We will add a few more.
 5. Click + New application setting to add each of these NAME/VALUE pairs
    1. Name: COLLECTION_NAME   Value: inventory
+   
    2. Name: DB_CONNECTION_STRING  Value:  (paste in the Cosmos DB connection String)
+   
+      1. **IMPORTANT:** We need to add the database name 'tailwind' to the connection string.  You will see the server address:port and the the /?ssl flag like this: 
+   
+         ```
+         ...azure.com:10255/?ssl...
+         ```
+   
+         You add the tailwind database name between them like this: 
+   
+         ```
+         ..azure.com:10255/tailwind?ssl...
+         ```
+   
+         
 6. Press Save
 
 #### Inventory Service
