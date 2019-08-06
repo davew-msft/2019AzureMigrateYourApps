@@ -174,7 +174,7 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 
 1. Click on resource groups-> (your resource group)
 
-2. ##### Click on your Cosmos DB Account
+2. Click on your Cosmos DB Account
 
 3. Click on the Connection String option in the left toolbar
 
