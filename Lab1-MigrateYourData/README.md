@@ -30,7 +30,9 @@ You will need a few things in your environment setup for this lab.
 
 ### Setup 0 - Create a unique prefix
 
-In many cases you need to create a resource that has a unique name.  The easiest way to do this is to create a prefix that you can append to the front of the standard resource names.    As an exmple, Bill needs a unique prefix so he decided to use his name and the last four digits of his phone number.  So, his prefix is 'Bill3367'.  Any resources that need to be unique he can now put this in front of the standard name and it should be unique.  Come up with a prefix you can use for all the labs.
+In many cases you need to create a resource that has a unique name.  The easiest way to do this is to create a prefix that you can append to the front of the standard resource names.    As an exmple, Bill Smith needs a unique prefix so he decided to use his name and the first three digits of his phone number.  So, his prefix is 'BS336'.  Any resources that need to be unique he can now put this in front of the standard name and it should be unique.  
+
+One thing to consider is that some resources have a limit to how many characters are in a name.  So, keeping your prefix to under 6 characters.  Come up with a prefix you can use for all the labs.
 
 Whenever you see (prefix) in the labs, preplace that with the prefix you come up with.
 
