@@ -279,7 +279,7 @@ You can get the base URL's for inventory and product services by clicking on the
 
 #### Run the App!
 
-That is is it!  We are done migrating the data and deploying a modern application through containers.  The last thing to do is to run the app and make sure it works!
+That is is it!  We are done migrating the data and deploying a modern application through containers.  The last thing to do is to run the app and make sure it works! (Note: the web page will render pretty quickly, but the data may take 2-3 minutes to show up.  If it takes longer than 3-4 minutes the we should start to debug)
 
 1. Click on resource groups -> (your resource group)
 2. Click on your front end service resource of type 'App Service'
