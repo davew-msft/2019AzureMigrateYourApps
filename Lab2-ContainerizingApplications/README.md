@@ -194,9 +194,13 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 ##### Set the Web App Properties
 
 1. Click on resource groups -> (your resource group)
+
 2. Click on your product service resource of type 'App Service'
+
 3. Click Configuration on the left nav bar
+
 4. Here you will see some default application setting.  We will add a few more.
+
 5. Click + New application setting to add each of these NAME/VALUE pairs
    1. **Name**: COLLECTION_NAME   **Value**: inventory
    
@@ -216,7 +220,9 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
          
          ![cosmosconnectstring](../images/cosmosconnectstring.png)
    
-6. Press Save
+6. You should have two app settings something like this ![productappsettings](../images/productappsettings.png)
+
+7. Press Save
 
 #### Inventory Service
 
@@ -240,7 +246,7 @@ The inventory service needs to be pointed to the SQL Database that now lives in 
    2. Value:  (paste in the SQL connection String>)
    3. Update the SQL Connection string:
       1. User ID='migrateadmin'
-      2. Password='AzureMigrateTraining2019#'
+      2. Password='AzureMigrateTraining2019#' ![SQLConnectionString](../images/SQLConnectionString.png)
    4. Type: SQLAzure
 6. Press OK
 7. Press Save
