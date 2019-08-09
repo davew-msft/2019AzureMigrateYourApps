@@ -30,7 +30,9 @@ You will need a few things in your environment setup for this lab.
 
 ### Setup 0 - Create a unique prefix
 
-In many cases you need to create a resource that has a unique name.  The easiest way to do this is to create a prefix that you can append to the front of the standard resource names.    As an exmple, Bill needs a unique prefix so he decided to use his name and the last four digits of his phone number.  So, his prefix is 'Bill3367'.  Any resources that need to be unique he can now put this in front of the standard name and it should be unique.  Come up with a prefix you can use for all the labs.
+In many cases you need to create a resource that has a unique name.  The easiest way to do this is to create a prefix that you can append to the front of the standard resource names.    As an exmple, Bill Smith needs a unique prefix so he decided to use his name and the first three digits of his phone number.  So, his prefix is 'BS336'.  Any resources that need to be unique he can now put this in front of the standard name and it should be unique.  
+
+One thing to consider is that some resources have a limit to how many characters are in a name.  So, keeping your prefix to under 6 characters.  Come up with a prefix you can use for all the labs.
 
 Whenever you see (prefix) in the labs, preplace that with the prefix you come up with.
 
@@ -87,7 +89,7 @@ In this exercise we will create an instance of the Azure Database Migration Serv
    1. Service Name: '(prefix)MigrationService'
    2. Resource Group: Your assigned Resource Group
    3. Location: East US 2
-   4. Virtual Network ->  <resource group> -vnet/default
+   4. Virtual Network ->  <resource group>-vnet/default
 6. Pricing Tier: Standard 1v core
 7. Press Create
 
@@ -105,8 +107,8 @@ Follow these steps:
 
 1. Open up the Azure portal
 1. Click on the `>_` button in the toolbar, and wait for the Cloud Shell to initialize (it will take a few seconds).
-![cloud shell command](https://docs.microsoft.com/en-us/azure/cloud-shell/media/overview/overview-bash-pic.png)
 1. Select `bash` from the dropdown of the Cloud Shell window.
+![cloud shell command](https://docs.microsoft.com/en-us/azure/cloud-shell/media/overview/overview-bash-pic.png)
 
 1. First off create 3 Bash variables by typing the following in the shell and press enter:
   * Resource Group Name - Make sure to set this to YOUR resource group name
@@ -212,8 +214,8 @@ First we need to do an assessment.  The tool will check the local db for compati
 3. Check `Check feature parity`
 4. Click `Next`
 5. Enter the localhost for server name and Windows authentication
-6. UnCheck the Encrypt Connection Box
-7. Select the `tailwind` database, click `Add`
+6. UN-Check the Encrypt Connection Box
+7. Select the `TailwindInventory` database, click `Add`
 8. Click `Start Assessment`
 9. You will see a report on compatibility issues.  There should only be one for this DB because Service Broker is turned on.  In a real situation you would mitigate the issues.  For this lab we do not have to worry about as we know service broker is not actually used.  In your real situation you would now have a list of possible incompatibilities that would have to be addressed. 
 
@@ -232,9 +234,9 @@ Now that we know our database can be migrated we will use the Migration tool to 
 1. Click `Create`
 2. Source Server: localhost
 3. Authentication type: Windows
-4. UN-Check the Encrypt Connection
+4. UN-Check the Encrypt Connection box
 5. Click Connect
-6. Select the `tailwind` database, click `Next`
+6. Select the `TailwindInventory` database, click `Next`
 7. Target Server:  This will be the SQL Server Instance we created.  
    1. In the Azure Portal click on the resource group icon and select your resource group.
    2. Find the SQL Instance you created.  It will be resource type of SQL Server
@@ -275,10 +277,10 @@ Now that we know our database can be migrated we will use the Migration tool to 
    3. User: migrateadmin
    4. Password: 'AzureMigrateTraining2019#'
 3. Click save
-4. #### Select `tailwind` database from the source
-5. #### Select Target Database
-6. Select all tables.
-7. Give a name to the migration activity and don't validate the database.
+4. #### Select `TailwindInventory` database from the source
+5. #### Select Target Database 
+6. Select all tables and click Save.
+7. Give a name to the migration activity and select "Don't Validate the Database" in the database validation options.
 8. Run the migration
 
 **<u>Congratulations!</u>**  You have successfully migrated from the VM instance of SQL to Azure SQL DB!  You can check to see the data is there by using the portal based query tool.
@@ -369,9 +371,9 @@ First check to make sure the Cosmos DB instance was created successfully.
 4. Create the following environment variables in that shell
 
    > ```language-bash
-   > $COSMOS_DB_NAME=<Host name from connection string properties>
-   > $COSMOS_USER=<username from connection string properties>
-   > $COSMOS_PWD=<primary password from connection string properties>
+   > COSMOS_DB_NAME=<Host name from connection string properties>
+   > COSMOS_USER=<username from connection string properties>
+   > COSMOS_PWD=<primary password from connection string properties>
    > ```
 
    
