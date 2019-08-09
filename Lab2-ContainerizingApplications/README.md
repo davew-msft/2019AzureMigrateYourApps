@@ -60,7 +60,7 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
 
 ### Build the code and deploy to ACR
 
-1. Set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry. (Do NOT use the full .azurecr.io UNC, only the name)
+1. Set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry -  (prfex)cr.   (Do NOT use the full .azurecr.io UNC, only the name)
 
    ```bash
    MYACR=<your ACR name>
@@ -80,7 +80,7 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
    2. Click on your resource group
    3. Locate your ACR resource type 'Container Register' - Click it
    4. Click 'Repositories' in the left navigation
-   5. You should see your product-service in the repositories list
+   5. You should see your product-service in the repositories list ![DeployContainer](../images/DeployContainer.png)
 
 4. Same for the inventory service.
 
@@ -123,7 +123,10 @@ Now that we have compiled code in containers stored in the registry we now need 
    1. App Name: (prefix)product
    2. Resource Group: (your resource group)
    3. OS: Linux
-   4. Service Plan: new default
+   4. Service Plan: Create New
+      1. App Service Plan: (prefix)serviceplan
+      2. Location: eastus2
+      3. Pricing: Dev/Test - B1
    5. Configure Container:
       1. Pick Azure Container Registry
       2. Pick your ACR
@@ -141,7 +144,7 @@ Now that we have compiled code in containers stored in the registry we now need 
    1. App Name: (prefix)inventory
    2. Resource Group: (your resource group)
    3. OS: Linux
-   4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.
+   4. Service Plan: Pick the same plan you created for the product service app.  You only need to create one plan that the web apps share.
    5. Configure Container:
       1. Pick Azure Container Registry
       2. Pick your ACR
@@ -172,7 +175,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 
 ### Service Configuration 
 
-##### We now have web apps created for all our resources.  The last thing we need to do is configure application environment variables like connections strings.  When the services start up they can read the environment variables so we can make configurations at runtime.  
+We now have web apps created for all our resources.  The last thing we need to do is configure application environment variables like connections strings.  When the services start up they can read the environment variables so we can make configurations at runtime.  
 
 #### Product Service
 
@@ -195,9 +198,9 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 3. Click Configuration on the left nav bar
 4. Here you will see some default application setting.  We will add a few more.
 5. Click + New application setting to add each of these NAME/VALUE pairs
-   1. Name: COLLECTION_NAME   Value: inventory
+   1. **Name**: COLLECTION_NAME   **Value**: inventory
    
-   2. Name: DB_CONNECTION_STRING  Value:  (paste in the Cosmos DB connection String)
+   2. **Name**: DB_CONNECTION_STRING  **Value**:  (paste in the Cosmos DB connection String)
    
       1. **IMPORTANT:** We need to add the database name 'tailwind' to the connection string.  You will see the server address:port and the the /?ssl flag like this: 
    
@@ -210,8 +213,9 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
          ```
          ..azure.com:10255/tailwind?ssl...
          ```
-   
          
+         ![cosmosconnectstring](../images/cosmosconnectstring.png)
+   
 6. Press Save
 
 #### Inventory Service
