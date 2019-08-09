@@ -6,6 +6,22 @@ Welcome to the Migrating Applications to the Cloud Training.  This page will giv
 
 The story goes that, Tailwind Traders acquired Northwind Traders earlier this year, they wanted to be sure that they could access their inventory in real time, which meant moving their existing web API alongside ours on Microsoft Azure.   Besides moving the local web aps and API's to Azure there is a need to move the On-Premise MongoDB and SQL Server to the cloud as well.
 
+## Presentations 
+
+The readme in the presentation folder will give you an update as to when that presentation was last validated.  Please check the date and augment as necessary to be accurate.  There are five presentations to match the five informational sessions in the agenda.  See the below section on Session Notes for more details on each of those.
+
+## Lab Folders
+
+The lab folders are self contained labs.  You should not need to go to other resources to run the labs.  The original code base of the database and application migration labs are from these events.  
+
+[IgniteTheTour-DEV10](https://github.com/microsoft/IgniteTheTour/tree/master/DEV%20-%20Building%20your%20Applications%20for%20the%20Cloud/DEV10)
+
+[IgniteTheTourMIG10](https://github.com/microsoft/IgniteTheTour/tree/master/MIG%20-%20Migrating%20Applications%20to%20the%20Cloud/MIG10)
+
+## Setupfiles
+
+You should not need to do anything with the setup files.  There is a backup file for SQL that is used during the database migration lab.  There is also a MongoDB backup in case you need to create your own MongoDB server.  See notes about that in Session 3.
+
 ## Session Notes
 
 ### Session 1 - Cloud Apps and Azure
@@ -123,12 +139,16 @@ If you need a MongoDB to perform Lab 3.  Follow these steps:
 1. In Azure press create new resource and type 'MongoDB'
 2. Create a VM based on one of the MongoDB templates. 
    1. This session used the one by Jetware
-3. Once Created SSH to the VM 
-4. Install the MongoDB client tools 
+3. Set it's IP address to static
+4. Make sure two firewall ports are open for
+   1. SSH - 22
+   2. MongoDB - 27017
+5. Once Created SSH to the VM 
+6. Install the MongoDB client tools 
    1. sudo apt install mongo-clients
-5. Download the inventory.bson and inventory.metadata.json using wget
-6. Restore the database using mongorestore command
-7. Create the user in the lab
+7. Download the inventory.bson and inventory.metadata.json using wget
+8. Restore the database using mongorestore command
+9. Create the user in the lab
    1. At the linux prompt type 'mongo'
    2. db.createUser({user: "labuser", pwd:"AzureMigrateTraining2019#", roles:[{role: "read", db:"tailwind"}]})
 
