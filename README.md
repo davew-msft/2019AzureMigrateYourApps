@@ -4,7 +4,7 @@ Baseline event Series - Presentations and labs for the event
 Agenda
  - 9-9:30 – Cloud Apps and Azure – Introduction 
 
- - 9:30 – 10:00 - Overview of Database Migrations
+ - 9:30 – 10:00 - Moving your database to Azure
 
  - 10:00 – 11:15 – Hands on Activity – Migrate SQL and Mongo Data to Azure
 
