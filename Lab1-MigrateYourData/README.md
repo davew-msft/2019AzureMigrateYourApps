@@ -106,10 +106,13 @@ The Azure Cloud Shell is a shell environment that runs right in your browser.  I
 Follow these steps:
 
 1. Open up the Azure portal
-1. Click on the `>_` button in the toolbar, and wait for the Cloud Shell to initialize (it will take a few seconds).
-1. Select `bash` from the dropdown of the Cloud Shell window.
-![cloud shell command](https://docs.microsoft.com/en-us/azure/cloud-shell/media/overview/overview-bash-pic.png)
-
+1. Click on the `>_` button in the toolbar ![CreateBash](../images/CreateBash.png)
+1. Pick Bash on the Welcome Screen ![CreateBash1](../images/CreateBash1.png)
+1. Press Show advanced settings ![CreateBash2](../images/CreateBash2.png)
+1. Create a new storage account and file share in your resource group.  Use your (prefix) in the names. ![CreateBash3](../images/CreateBash3.png)
+1. Click Create Storage
+1. Wait for the shell to start.
+1. Make sure you are in  `bash` from the dropdown of the Cloud Shell window.  ![CreateBash4](../images/CreateBash4.png)
 1. First off create 3 Bash variables by typing the following in the shell and press enter:
   * Resource Group Name - Make sure to set this to YOUR resource group name
   * Region to host the Azure Cosmos DB instance
@@ -120,7 +123,7 @@ RESOURCE_GROUP_COSMOS='<Your resoruce group name'
 LOCATION_COSMOS='eastus2'
 ACCOUNT_NAME_COSMOS='(prefix)migrationcosmos'
 ```
-5. Then create the Azure Cosmos DB Account and place it into the resource group you just created.  Copy the below command and execute it.  
+5. Copy the below command and execute it (you can paste in command window with a  right click).  This will create the Azure Cosmos DB Account and place it into the resource group you just created.  
 
 ```language-bas
 az cosmosdb create --resource-group $RESOURCE_GROUP_COSMOS --name $ACCOUNT_NAME_COSMOS --kind MongoDB --locations regionName=$LOCATION_COSMOS
@@ -178,18 +181,20 @@ By now the SQL Server VM you created should be finished provisioning.  We need t
 3. Click on your SQL On Prem Virtual Machine you created
 4. Click on Connect->download the RDP file and open that to RDP to the VM, login with the migrateadmin user we created in Setup 1. 
 5. Update IE Security - The local server manager should launch on first login.
-   1. Press Local Server on the left side
-   2. Press the IE Enhanced Security Configuration  on the right
-   3. Set that off for Administrator
+   1. Press Local Server on the left side 
+   2. Press the IE Enhanced Security Configuration  on the right ![IE-EnhancedSec1](../images/IE-EnhancedSec1.png)
+   3. Set that off for Administrator 
+       ![IE-EnhancedSec2](../images/IE-EnhancedSec2.png)
    4. Close the Server Manager
 6. Download and restore the database.  The inventory database is stored in the repository as a SQL .bakpac file needs to be restored.
-   1. Download the TailwindInventory.bacpac backup file from the setupfiles directory of this Github Repo. https://github.com/chadgms/2019AzureMigrateYourApps/tree/master/setupfiles
+   1. Download the TailwindInventory.bacpac backup file from the setupfiles directory of this Github Repo. https://github.com/chadgms/2019AzureMigrateYourApps/blob/master/setupfiles/TailwindInventory.bacpac
+      ![SQLBackupDownload](../images/SQLBackupDownload.png)
    2. Click the start menu and type 'SQL Server Management'
    3. Launch the SQL Server Management Studio and connect to the local SQL instance.
    4. Right click on the Database folder and select 'Import Data-tier Application'
-      ![ImportDAC](../images/ImportDAC.png)
-
-7. Import the backup file you downloaded.
+   ![ImportDAC](../images/ImportDAC.png)
+   
+7. Follow the wizard to import the backup file you downloaded.
 8. When complete - Right click on the database folder and select 'refresh'
 9. You should now see the TailwindInventory DB installed.
 10. Open IE and either search for 'Microsoft Database Migration Assistant' or download from:
