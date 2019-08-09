@@ -4,7 +4,7 @@
 
 Welcome to the Migrating Applications to the Cloud Training.  This page will give you all the information you need to know in order to execute a successful event.  The first half of the day is based on a story.  That is a story based on Tailwind Traders.
 
-The story goes that, Tailwind Traders acquired Northwind Traders earlier this year, they wanted to be sure that they could access their inventory in real time, which meant moving their existing web API alongside ours on Microsoft Azure.   Besides moving the local web aps and API's to Azure there is a need to move the On-Premise MongoDB and SQL Server to the cloud as well.
+## The story goes that, Tailwind Traders acquired Northwind Traders earlier this year, they wanted to be sure that they could access their inventory in real time, which meant moving their existing web API alongside ours on Microsoft Azure.   Besides moving the local web aps and API's to Azure there is a need to move the On-Premise MongoDB and SQL Server to the cloud as well.
 
 ## Presentations 
 
@@ -16,11 +16,18 @@ The lab folders are self contained labs.  You should not need to go to other res
 
 [IgniteTheTour-DEV10](https://github.com/microsoft/IgniteTheTour/tree/master/DEV%20-%20Building%20your%20Applications%20for%20the%20Cloud/DEV10)
 
-[IgniteTheTourMIG10](https://github.com/microsoft/IgniteTheTour/tree/master/MIG%20-%20Migrating%20Applications%20to%20the%20Cloud/MIG10)
+[IgniteTheTour-MIG20](https://github.com/microsoft/IgniteTheTour/tree/master/MIG - Migrating Applications to the Cloud/MIG20)
 
 ## Setupfiles
 
 You should not need to do anything with the setup files.  There is a backup file for SQL that is used during the database migration lab.  There is also a MongoDB backup in case you need to create your own MongoDB server.  See notes about that in Session 3.
+
+## Demo Setup
+
+You Lab 1 and 2 together create a demo that shows an application migrated to the cloud.  You should create a finished environment so you can show the end result during session 1.  You have two choices to get an environment up and running:
+
+1. Run though the labs yourself and in the end you should have the full demo
+2. You can use this [IgniteTheTour-DEV10](https://github.com/microsoft/IgniteTheTour/tree/master/DEV%20-%20Building%20your%20Applications%20for%20the%20Cloud/DEV10) repo and deploy the deployment/deploy.sh script.  Please use the Azure Bash shell as we know it has all the dependencies.   That should create a fully working environment. 
 
 ## Session Notes
 
