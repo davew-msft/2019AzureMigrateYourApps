@@ -82,12 +82,12 @@ You Lab 1 and 2 together create a demo that shows an application migrated to the
   - Options of orchestration of containers on Azure
   - Outline the options they will use in the hands on activity
 - **Skill Set**
-  - 300-400 developer skills with knowledge of 
+  - 200-300 developer skills with knowledge of 
     - Containers / Docker
     - Orchestration engines 
       - Kubernetes
 - **Notes**
-  - This session is based on an ignite session.  You can view this [Video](https://techcommunity.microsoft.com/t5/Microsoft-Ignite-The-Tour/Migrating-web-applications-to-Azure/m-p/284174) for some pointers on delivery, but some information may be out of date.  The lab in session 5 is based on the demo in this session.
+  - The "Developing Kubernetes Applications" section of the presentation and the Draft/Helm Demos are time permitting.
 
 ### Session 5 - Migrating apps to App Services on Azure
 
