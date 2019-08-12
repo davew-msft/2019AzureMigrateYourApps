@@ -106,10 +106,13 @@ The Azure Cloud Shell is a shell environment that runs right in your browser.  I
 Follow these steps:
 
 1. Open up the Azure portal
-1. Click on the `>_` button in the toolbar, and wait for the Cloud Shell to initialize (it will take a few seconds).
-1. Select `bash` from the dropdown of the Cloud Shell window.
-![cloud shell command](https://docs.microsoft.com/en-us/azure/cloud-shell/media/overview/overview-bash-pic.png)
-
+1. Click on the `>_` button in the toolbar ![CreateBash](../images/CreateBash.png)
+1. Pick Bash on the Welcome Screen ![CreateBash1](../images/CreateBash1.png)
+1. Press Show advanced settings ![CreateBash2](../images/CreateBash2.png)
+1. Create a new storage account and file share in your resource group.  Use your (prefix) in the names. ![CreateBash3](../images/CreateBash3.png)
+1. Click Create Storage
+1. Wait for the shell to start.
+1. Make sure you are in  `bash` from the dropdown of the Cloud Shell window.  ![CreateBash4](../images/CreateBash4.png)
 1. First off create 3 Bash variables by typing the following in the shell and press enter:
   * Resource Group Name - Make sure to set this to YOUR resource group name
   * Region to host the Azure Cosmos DB instance
@@ -120,7 +123,7 @@ RESOURCE_GROUP_COSMOS='<Your resoruce group name'
 LOCATION_COSMOS='eastus2'
 ACCOUNT_NAME_COSMOS='(prefix)migrationcosmos'
 ```
-5. Then create the Azure Cosmos DB Account and place it into the resource group you just created.  Copy the below command and execute it.  
+5. Copy the below command and execute it (you can paste in command window with a  right click).  This will create the Azure Cosmos DB Account and place it into the resource group you just created.  
 
 ```language-bas
 az cosmosdb create --resource-group $RESOURCE_GROUP_COSMOS --name $ACCOUNT_NAME_COSMOS --kind MongoDB --locations regionName=$LOCATION_COSMOS
@@ -178,18 +181,20 @@ By now the SQL Server VM you created should be finished provisioning.  We need t
 3. Click on your SQL On Prem Virtual Machine you created
 4. Click on Connect->download the RDP file and open that to RDP to the VM, login with the migrateadmin user we created in Setup 1. 
 5. Update IE Security - The local server manager should launch on first login.
-   1. Press Local Server on the left side
-   2. Press the IE Enhanced Security Configuration  on the right
-   3. Set that off for Administrator
+   1. Press Local Server on the left side 
+   2. Press the IE Enhanced Security Configuration  on the right ![IE-EnhancedSec1](../images/IE-EnhancedSec1.png)
+   3. Set that off for Administrator 
+       ![IE-EnhancedSec2](../images/IE-EnhancedSec2.png)
    4. Close the Server Manager
 6. Download and restore the database.  The inventory database is stored in the repository as a SQL .bakpac file needs to be restored.
-   1. Download the TailwindInventory.bacpac backup file from the setupfiles directory of this Github Repo. https://github.com/chadgms/2019AzureMigrateYourApps/tree/master/setupfiles
-   2. Click the start menu and type 'SQL Server Management'
+   1. Download the TailwindInventory.bacpac backup file from the setupfiles directory of this Github Repo. https://github.com/chadgms/2019AzureMigrateYourApps/blob/master/setupfiles/TailwindInventory.bacpac
+      ![SQLBackupDownload](../images/SQLBackupDownload.png)
+   2. Click the Windows start menu and type 'SQL Server Management'
    3. Launch the SQL Server Management Studio and connect to the local SQL instance.
    4. Right click on the Database folder and select 'Import Data-tier Application'
-      ![ImportDAC](../images/ImportDAC.png)
-
-7. Import the backup file you downloaded.
+   ![ImportDAC](../images/ImportDAC.png)
+   
+7. Follow the wizard to import the backup file you downloaded.
 8. When complete - Right click on the database folder and select 'refresh'
 9. You should now see the TailwindInventory DB installed.
 10. Open IE and either search for 'Microsoft Database Migration Assistant' or download from:
@@ -213,7 +218,7 @@ First we need to do an assessment.  The tool will check the local db for compati
 2. Check `Check database compatibility`
 3. Check `Check feature parity`
 4. Click `Next`
-5. Enter the localhost for server name and Windows authentication
+5. Enter the 'localhost' for server name and Windows authentication
 6. UN-Check the Encrypt Connection Box
 7. Select the `TailwindInventory` database, click `Add`
 8. Click `Start Assessment`
@@ -237,9 +242,9 @@ Now that we know our database can be migrated we will use the Migration tool to 
 4. UN-Check the Encrypt Connection box
 5. Click Connect
 6. Select the `TailwindInventory` database, click `Next`
-7. Target Server:  This will be the SQL Server Instance we created.  
+7. Target Server:  This will be the Azure SQL Server Instance we created.  
    1. In the Azure Portal click on the resource group icon and select your resource group.
-   2. Find the SQL Instance you created.  It will be resource type of SQL Server
+   2. Find the SQL Server Instance you created.  It will be resource type of SQL Server
    3. Copy the server name on the right hand side of the overview page
    4. Paste that full name into the target server name of the wizzard
 8. Choose SQL Server Authentication
@@ -253,6 +258,8 @@ Now that we know our database can be migrated we will use the Migration tool to 
 16. You now have your schema successfully migrated to Azure SQL DB.
 
 #### Data Migration
+
+Now that we have the schema migrated, we now need to move the data.  We will use the Azure Data Migration Service for this as it is much more robust option and can migrate the data with very minimal downtime. 
 
 1. In the Azure Portal click on the resource group icon and select your resource group.
 2. Find the resource of type 'Azure Database Migration Service' and click it.
@@ -277,13 +284,25 @@ Now that we know our database can be migrated we will use the Migration tool to 
    3. User: migrateadmin
    4. Password: 'AzureMigrateTraining2019#'
 3. Click save
-4. #### Select `TailwindInventory` database from the source
-5. #### Select Target Database 
+4. Select `TailwindInventory` database from the source
+5. Select your database as the Target Database -> Save
 6. Select all tables and click Save.
 7. Give a name to the migration activity and select "Don't Validate the Database" in the database validation options.
 8. Run the migration
 
 **<u>Congratulations!</u>**  You have successfully migrated from the VM instance of SQL to Azure SQL DB!  You can check to see the data is there by using the portal based query tool.
+
+By default Azure SQL Databases reject all traffic to them.  We were able to run the Azure Database Migration tool because we checked the box to allow other Azure services to connect to it.  I in order to connect to it via other tools we need to open an exception for our IP address through the firewall.
+
+##### Modify SQL Firewall
+
+1. Click on your resource group
+2. Click on your Azure SQL Server Instnace
+3. Click on Firewalls and virtual networks in the left hand pane
+4. You will see your client IP address listed.   You need to create a new rule allowing that IP like this ![SetSQLIP](../images/SetSQLIP.png)
+5. Press Save
+
+##### Check your data in SQL
 
 1. Click on your resource group
 2. Click on your Azure SQL DB database
@@ -366,7 +385,7 @@ First check to make sure the Cosmos DB instance was created successfully.
    2. Click on the Connection String option on the left navigation
    3. The username and password for you Cosmos DB instance can be copied from here.
 
-3. Go back to the Azure shell where you have the SSH connection to your Linux VM
+3. Go back to the Azure shell 
 
 4. Create the following environment variables in that shell
 
@@ -393,11 +412,11 @@ mongorestore \
     --db tailwind \
     --collection inventory
 ```
-8. Go into your Azure Cosmos DB account and click on `Data Explorer`. Select the `tailwind` database.
-
-9. Expand the `tailwind` node, expand the `inventory` node, and select `Documents`
-
-10. You should see the inventory item documents are now in Cosmos DB
+8. Go into your Azure Cosmos DB account and click on `Data Explorer`. 
+9. Press the refresh button next to Collections if you don't see the tailwind collection
+10. Select the `tailwind` database.
+11. Expand the `tailwind` node, expand the `inventory` node, and select `Documents`
+12. You should see the inventory item documents are now in Cosmos DB
 
 
 ![cosmospopulated](../images/cosmospopulated.png)

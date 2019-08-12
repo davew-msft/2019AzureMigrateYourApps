@@ -60,7 +60,7 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
 
 ### Build the code and deploy to ACR
 
-1. Set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry. (Do NOT use the full .azurecr.io UNC, only the name)
+1. Set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry -  (prfex)cr.   (Do NOT use the full .azurecr.io UNC, only the name)
 
    ```bash
    MYACR=<your ACR name>
@@ -80,7 +80,7 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
    2. Click on your resource group
    3. Locate your ACR resource type 'Container Register' - Click it
    4. Click 'Repositories' in the left navigation
-   5. You should see your product-service in the repositories list
+   5. You should see your product-service in the repositories list ![DeployContainer](../images/DeployContainer.png)
 
 4. Same for the inventory service.
 
@@ -123,7 +123,10 @@ Now that we have compiled code in containers stored in the registry we now need 
    1. App Name: (prefix)product
    2. Resource Group: (your resource group)
    3. OS: Linux
-   4. Service Plan: new default
+   4. Service Plan: Create New
+      1. App Service Plan: (prefix)serviceplan
+      2. Location: eastus2
+      3. Pricing: Dev/Test - B1
    5. Configure Container:
       1. Pick Azure Container Registry
       2. Pick your ACR
@@ -141,7 +144,7 @@ Now that we have compiled code in containers stored in the registry we now need 
    1. App Name: (prefix)inventory
    2. Resource Group: (your resource group)
    3. OS: Linux
-   4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.
+   4. Service Plan: Pick the same plan you created for the product service app.  You only need to create one plan that the web apps share.
    5. Configure Container:
       1. Pick Azure Container Registry
       2. Pick your ACR
@@ -172,7 +175,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 
 ### Service Configuration 
 
-##### We now have web apps created for all our resources.  The last thing we need to do is configure application environment variables like connections strings.  When the services start up they can read the environment variables so we can make configurations at runtime.  
+We now have web apps created for all our resources.  The last thing we need to do is configure application environment variables like connections strings.  When the services start up they can read the environment variables so we can make configurations at runtime.  
 
 #### Product Service
 
@@ -191,13 +194,17 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 ##### Set the Web App Properties
 
 1. Click on resource groups -> (your resource group)
+
 2. Click on your product service resource of type 'App Service'
+
 3. Click Configuration on the left nav bar
+
 4. Here you will see some default application setting.  We will add a few more.
+
 5. Click + New application setting to add each of these NAME/VALUE pairs
-   1. Name: COLLECTION_NAME   Value: inventory
+   1. **Name**: COLLECTION_NAME   **Value**: inventory
    
-   2. Name: DB_CONNECTION_STRING  Value:  (paste in the Cosmos DB connection String)
+   2. **Name**: DB_CONNECTION_STRING  **Value**:  (paste in the Cosmos DB connection String)
    
       1. **IMPORTANT:** We need to add the database name 'tailwind' to the connection string.  You will see the server address:port and the the /?ssl flag like this: 
    
@@ -210,9 +217,12 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
          ```
          ..azure.com:10255/tailwind?ssl...
          ```
-   
          
-6. Press Save
+         ![cosmosconnectstring](../images/cosmosconnectstring.png)
+   
+6. You should have two app settings something like this ![productappsettings](../images/productappsettings.png)
+
+7. Press Save
 
 #### Inventory Service
 
@@ -236,7 +246,7 @@ The inventory service needs to be pointed to the SQL Database that now lives in 
    2. Value:  (paste in the SQL connection String>)
    3. Update the SQL Connection string:
       1. User ID='migrateadmin'
-      2. Password='AzureMigrateTraining2019#'
+      2. Password='AzureMigrateTraining2019#' ![SQLConnectionString](../images/SQLConnectionString.png)
    4. Type: SQLAzure
 6. Press OK
 7. Press Save
@@ -269,7 +279,7 @@ You can get the base URL's for inventory and product services by clicking on the
 
 #### Run the App!
 
-That is is it!  We are done migrating the data and deploying a modern application through containers.  The last thing to do is to run the app and make sure it works!
+That is is it!  We are done migrating the data and deploying a modern application through containers.  The last thing to do is to run the app and make sure it works! (Note: the web page will render pretty quickly, but the data may take 2-3 minutes to show up.  If it takes longer than 3-4 minutes the we should start to debug)
 
 1. Click on resource groups -> (your resource group)
 2. Click on your front end service resource of type 'App Service'

@@ -16,11 +16,18 @@ The lab folders are self contained labs.  You should not need to go to other res
 
 [IgniteTheTour-DEV10](https://github.com/microsoft/IgniteTheTour/tree/master/DEV%20-%20Building%20your%20Applications%20for%20the%20Cloud/DEV10)
 
-[IgniteTheTourMIG10](https://github.com/microsoft/IgniteTheTour/tree/master/MIG%20-%20Migrating%20Applications%20to%20the%20Cloud/MIG10)
+[IgniteTheTour-MIG20](https://github.com/microsoft/IgniteTheTour/tree/master/MIG - Migrating Applications to the Cloud/MIG20)
 
 ## Setupfiles
 
 You should not need to do anything with the setup files.  There is a backup file for SQL that is used during the database migration lab.  There is also a MongoDB backup in case you need to create your own MongoDB server.  See notes about that in Session 3.
+
+## Demo Setup
+
+You Lab 1 and 2 together create a demo that shows an application migrated to the cloud.  You should create a finished environment so you can show the end result during session 1.  You have two choices to get an environment up and running:
+
+1. Run though the labs yourself and in the end you should have the full demo
+2. You can use this [IgniteTheTour-DEV10](https://github.com/microsoft/IgniteTheTour/tree/master/DEV%20-%20Building%20your%20Applications%20for%20the%20Cloud/DEV10) repo and deploy the deployment/deploy.sh script.  Please use the Azure Bash shell as we know it has all the dependencies.   That should create a fully working environment. 
 
 ## Session Notes
 
@@ -75,12 +82,12 @@ You should not need to do anything with the setup files.  There is a backup file
   - Options of orchestration of containers on Azure
   - Outline the options they will use in the hands on activity
 - **Skill Set**
-  - 300-400 developer skills with knowledge of 
+  - 200-300 developer skills with knowledge of 
     - Containers / Docker
     - Orchestration engines 
       - Kubernetes
 - **Notes**
-  - This session is based on an ignite session.  You can view this [Video](https://techcommunity.microsoft.com/t5/Microsoft-Ignite-The-Tour/Migrating-web-applications-to-Azure/m-p/284174) for some pointers on delivery, but some information may be out of date.  The lab in session 5 is based on the demo in this session.
+  - The "Developing Kubernetes Applications" section of the presentation and the Draft/Helm Demos are time permitting.
 
 ### Session 5 - Migrating apps to App Services on Azure
 
