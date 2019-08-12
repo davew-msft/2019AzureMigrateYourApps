@@ -112,7 +112,7 @@ You Lab 1 and 2 together create a demo that shows an application migrated to the
     - Azure Serverless capability and advantages over other deployment methods.
 - **Notes**
   - Due to time we were unable to create a lab for this session, but we felt it important to make sure that students understand what true PaaS and serverless options bring to the table. 
-  - A simple Serverless API is described in the Notes section of the Demo slide (in the deck) and can be done in under 5 minutes (time permitting)
+  - A simple Serverless API demo is described in the Notes section of the Demo slide and can be done in under 5 minutes (time permitting)
 
 ### Session 7 - DevOps, Deploying Your Applications Faster and Safer
 
