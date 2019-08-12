@@ -109,10 +109,10 @@ You Lab 1 and 2 together create a demo that shows an application migrated to the
   - Make clear the advantages of pure PaaS capabilities of services like Azure Functions bring as compared to containers.
 - **Skill Set**
   - 200-300 level developer knowledge of 
-    - Containers
     - Azure Serverless capability and advantages over other deployment methods.
 - **Notes**
   - Due to time we were unable to create a lab for this session, but we felt it important to make sure that students understand what true PaaS and serverless options bring to the table. 
+  - A simple Serverless API is described in the Notes section of the Demo slide (in the deck) and can be done in under 5 minutes (time permitting)
 
 ### Session 7 - DevOps, Deploying Your Applications Faster and Safer
 
