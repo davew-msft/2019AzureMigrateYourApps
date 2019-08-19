@@ -10,9 +10,12 @@ The story goes that, Tailwind Traders acquired Northwind Traders earlier this ye
 
 The readme in the presentation folder will give you an update as to when that presentation was last validated.  Please check the date and augment as necessary to be accurate.  There are five presentations to match the five informational sessions in the agenda.  See the below section on Session Notes for more details on each of those.
 
-## Lab Folders
+## Labs 
 
-The lab folders are self contained labs.  You should not need to go to other resources to run the labs.  The original code base of the database and application migration labs are from these events.  
+The lab folders are self contained labs.  You should not need to go to other resources to run the labs.  Attendee's will need a laptop, but only an Azure browser is required.  All work will be done in the portal and the Azure Comannd Shell.  If you think attendee's laptops may be locked down to the point that they can't access Azure, than having a laptop for loan will be a good idea.  No special software needs to be installed though. 
+
+
+The original code base of the database and application migration labs are from these events.  
 
 [IgniteTheTour-DEV10](https://github.com/microsoft/IgniteTheTour/tree/master/DEV%20-%20Building%20your%20Applications%20for%20the%20Cloud/DEV10)
 
