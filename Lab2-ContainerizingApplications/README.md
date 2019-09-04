@@ -82,31 +82,17 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
    4. Click 'Repositories' in the left navigation
    5. You should see your product-service in the repositories list ![DeployContainer](../images/DeployContainer.png)
 
-4. Same for the inventory service.
+4. Build the inventory service and frontend containers.
 
    ```
    az acr build -t inventory-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/inventory-service/InventoryService.Api
    ```
 
+   ```
+   az acr build -t frontend-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend
+   ```
+
 5. Verify it exists in the ACR same as before
-
-6. Now the front end web site.
-
-   1. Before we build the site we need to make sure that execute permission is set on the Docker configuration file:
-
-      ```bash
-      chmod +x ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend/docker-startup.sh
-      ```
-
-   2. Now we build the code 
-
-      ```
-      az acr build -t frontend-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend
-      ```
-
-      
-
-7. Verify it exists in the ACR same as before
 
 
 
