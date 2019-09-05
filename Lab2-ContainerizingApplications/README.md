@@ -60,10 +60,12 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
 
 ### Build the code and deploy to ACR
 
-1. Set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry -  (prfex)cr.   (Do NOT use the full .azurecr.io UNC, only the name)
+1. In your Azure Cloud Shell, set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry -  (prfex)cr.   (Do NOT use the full .azurecr.io UNC, only the name)
 
    ```bash
+   MYRG=<your Resource Group name>
    MYACR=<your ACR name>
+   MYID=<your unique id>
    ```
 
    
@@ -82,31 +84,17 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
    4. Click 'Repositories' in the left navigation
    5. You should see your product-service in the repositories list ![DeployContainer](../images/DeployContainer.png)
 
-4. Same for the inventory service.
+4. Build the inventory service and frontend containers.
 
    ```
    az acr build -t inventory-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/inventory-service/InventoryService.Api
    ```
 
+   ```
+   az acr build -t frontend-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend
+   ```
+
 5. Verify it exists in the ACR same as before
-
-6. Now the front end web site.
-
-   1. Before we build the site we need to make sure that execute permission is set on the Docker configuration file:
-
-      ```bash
-      chmod +x ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend/docker-startup.sh
-      ```
-
-   2. Now we build the code 
-
-      ```
-      az acr build -t frontend-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/frontend
-      ```
-
-      
-
-7. Verify it exists in the ACR same as before
 
 
 
@@ -137,41 +125,19 @@ Now that we have compiled code in containers stored in the registry we now need 
 
 #### Inventory Service App
 
-1. Press the create resource button in the Azure portal
-2. Search for 'Web app for containers' and press enter
-3. Press Create
-4. Fill out parameters as follows
-   1. App Name: (prefix)inventory
-   2. Resource Group: (your resource group)
-   3. OS: Linux
-   4. Service Plan: Pick the same plan you created for the product service app.  You only need to create one plan that the web apps share.
-   5. Configure Container:
-      1. Pick Azure Container Registry
-      2. Pick your ACR
-      3. Select the inventory-service image
-      4. latest tag
-      5. Press Apply
-   6. Press Create
+We will deploy the rest of the services using the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (already pre-installed in the CloudShell) onto the same Service Plan. You will need to retrive the name of your newly created plan (from the previous step) and the fully qualified container image path using the Azure portal or the Azure cli.
+
+```
+az webapp create -g $MYRG -n "$MYID"inventory --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
+```
 
 #### Front End App
 
-1. Press the create resource button in the Azure portal
-2. Search for 'Web app for containers' and press enter
-3. Press Create
-4. Fill out parameters as follows
-   1. App Name: (prefix)frontend
-   2. Resource Group: (your resource group)
-   3. OS: Linux
-   4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.
-   5. Configure Container:
-      1. Pick Azure Container Registry
-      2. Pick your ACR
-      3. Select the frontend-service image
-      4. latest tag
-      5. Press Apply
-   6. Press Create
+Repeat the deployment, but this time for the frontend service
 
-
+```
+az webapp create -g $MYRG -n "$MYID"frontend --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
+```
 
 ### Service Configuration 
 
@@ -222,6 +188,9 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
    
 6. You should have two app settings something like this ![productappsettings](../images/productappsettings.png)
 
+**Note**: Connection strings can also be resolved from [Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/) using [Key Vault references](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references).
+
+
 7. Press Save
 
 #### Inventory Service
@@ -267,15 +236,11 @@ You can get the base URL's for inventory and product services by clicking on the
 
 ##### Set Front End Web App Properties
 
-1. Click on resource groups -> (your resource group)
-2. Click on your front end resource of type 'App Service'
-3. Click Configuration on the left nav bar
-4. Click + New application setting to add each of these NAME/VALUE pairs
-   1. Name: INVENTORY_SERVICE_BASE_URL   Value: (your inventory base url)
-   2. Name: PRODUCT_SERVICE_BASE_URL   Value:  (your product service base url)
-5. Press Save
+We will now set the Front End application settings using the Azure Cli:
 
-
+```
+az webapp config appsettings set --resource-group $MYRG --name "$MYID"frontend --settings INVENTORY_SERVICE_BASE_URL='<your inventory base url>' PRODUCT_SERVICE_BASE_URL='<your product service base url>'
+```
 
 #### Run the App!
 
