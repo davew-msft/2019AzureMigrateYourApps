@@ -65,7 +65,7 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
    ```bash
    MYRG=<your Resource Group name>
    MYACR=<your ACR name>
-   MYID=<your unique id>
+   MYID=<your unique prefix>
    ```
 
    
