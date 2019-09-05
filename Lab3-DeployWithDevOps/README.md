@@ -37,8 +37,8 @@
 
 ## Exercise 2: Configure Continuous Integration
 ### Task 1: Configure your basic Pipeline DevOps
-1. Log in portal Azure and begin the deployment of Module 3 resources using this deployment script - click here <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Falmvm%2Fmaster%2Flabs%2Fvstsextend%2Fdocker%2Farmtemplate%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" alt="Deploy to Azure"></a>
-- Be sure to use lowercase letters with your initials.  Eg. - tjbmodule3
+1. Log in portal Azure and begin the deployment of Module 3 resources using this deployment script. Be sure to use lowercase letters with your initials Eg. - tjbmodule3.  Click the Deploy to Azure button to start <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Falmvm%2Fmaster%2Flabs%2Fvstsextend%2Fdocker%2Farmtemplate%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" alt="Deploy to Azure"></a>
+- 
 
 2. Go to resources groups and select the resource group you just created from the script above.
 ![](images/6.png)
@@ -241,7 +241,7 @@
 
 ![](images/45.png)
 
-7. Select your **Azure SQL DacpacTask**
+7. Select your **Azure SQL Dacpac Task**
 8. Put `Execute Azure SQL : DacpacTask` as the **Display name**
 9. Select your **ServiceConnection** on **Azure Subscription**
 10. Set `$(SQLserver)` on **Azure SQL Server** input
@@ -252,7 +252,7 @@
 ![](images/46.png)
 
 14. Go down and set `$(System.DefaultWorkingDirectory)/**/*.dacpac` as your **DACPAC File** on **Deployment Package** section
-15. Set `SqlAzureDacpacDeployment1` as your `Reference name` on **Output Variables** section
+15. Set `SqlAzureDacpacDeployment1` as your **Reference name** on **Output Variables** section
 
 ![](images/47.png)
 
@@ -307,7 +307,7 @@
 
 ## Exercise 4: Initiate the CI Build and Deployment through code commit
 
-1. Click on **Files** section under the **Repos** tab and navigate to the Docker/src/MyHealth.Web/Views/Home folder and open the Index.cshtml file for editing
+1. Click on **Files** section under the **Repos** tab and navigate to the (ProjectName)/src/MyHealth.Web/Views/Home folder and open the Index.cshtml file for editing
 
 ![](images/55.png)
 
@@ -318,6 +318,7 @@
 3. After clicking **Commit** button, add a comment and click on **Commit**
 
 ![](images/57.png)
+
 4. Click on **Builds** tab, and subsequently select the commit name
 
 ![](images/58.png)
