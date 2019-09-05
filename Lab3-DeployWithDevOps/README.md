@@ -240,6 +240,7 @@
 6. Select the first option then add
 
 ![](images/45.png)
+
 7. Select your **Azure SQL DacpacTask**
 8. Put `Execute Azure SQL : DacpacTask` as the **Display name**
 9. Select your **ServiceConnection** on **Azure Subscription**
@@ -291,11 +292,11 @@
 1. Click on **Variables** tab
 2. Add these variables clicking on **+ Add** button
 
-**Name:** ``ACR`` **Value:** ``YOUR_ACR.azurecr.io`` **Scope:** `Release`
-**Name:** ``DatabaseName`` **Value:** ``mhcdb`` **Scope:** `Release`
-**Name:** ``Password`` **Value:** ``P2ssw0rd1234`` **Scope:** `Release`
-**Name:** ``SQLadmin`` **Value:** ``sqladmin`` **Scope:** `Release`
-**Name:** ``SQLserver`` **Value:** ``YOUR_DBSERVER.database.windows.net`` **Scope:** `Release`
+- **Name:** ``ACR`` **Value:** ``YOUR_ACR.azurecr.io`` **Scope:** `Release`
+- **Name:** ``DatabaseName`` **Value:** ``mhcdb`` **Scope:** `Release`
+- **Name:** ``Password`` **Value:** ``P2ssw0rd1234`` **Scope:** `Release`
+- **Name:** ``SQLadmin`` **Value:** ``sqladmin`` **Scope:** `Release`
+- **Name:** ``SQLserver`` **Value:** ``YOUR_DBSERVER.database.windows.net`` **Scope:** `Release`
 
 ![](images/53.png)
 
