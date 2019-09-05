@@ -338,7 +338,7 @@
 
 ![](images/63.png)
 
-7. Navigate to the **Azure Container Portal** and then select the **Repositories** option to view the generated docker images
+7. Navigate to the **Azure Container Registry** and then select the **Repositories** option to view the generated docker images
 
 ![](images/64.png)
 
