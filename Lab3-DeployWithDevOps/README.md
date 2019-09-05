@@ -37,9 +37,11 @@
 
 ## Exercise 2: Configure Continuous Integration
 ### Task 1: Configure your basic Pipeline DevOps
-1. Log in portal Azure and begin the deployment of Module 3 resources using this deployment script. Be sure to use lowercase letters with your initials Eg. - tjbmodule3.  Click the Deploy to Azure button to start <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Falmvm%2Fmaster%2Flabs%2Fvstsextend%2Fdocker%2Farmtemplate%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" alt="Deploy to Azure"></a>
+1. Log in to your Azure portal lab subscription. 
 
-2. Go to resources groups and select the resource group you just created from the script above.
+- **Note** If you are using your own subscription, begin the deployment of Module 3 resources using this deployment script. Be sure to use lowercase letters with your initials Eg. - tjbmodule3.  Click the Deploy to Azure button to start <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Falmvm%2Fmaster%2Flabs%2Fvstsextend%2Fdocker%2Farmtemplate%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" alt="Deploy to Azure"></a>
+
+2. Go to resources groups and select the resource group that begins with module-04-***.
 ![](images/6.png)
 
 3. Open your **container registry** and take note of the **login server** - It's recommended to keep this browser tab open as you'll need these values later.
@@ -100,7 +102,7 @@
 
 ![](images/21.png)
 
-6. Set `serviceConnection` on **Connection name** input.  Contact a proctor for assistance in generating a Service Principal.
+6. Set `serviceConnection` on **Connection name** input.
 
 7. Put your **Service Principal Details** given at the beginning of the lab and click in **Ok**
 - **Application/Client Id**
