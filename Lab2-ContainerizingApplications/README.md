@@ -128,7 +128,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 We will deploy the rest of the services using the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (already pre-installed in the CloudShell) onto the same Service Plan. You will need to retrive the name of your newly created plan (from the previous step) and the fully qualified container image path using the Azure portal or the Azure cli.
 
 ```
-az webapp create -g $MYRG -n "$MYID"inventory --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/inventory-service:latest
+az webapp create -g $MYRG -n "$MYID"inventory --plan <your service plan> --deployment-container-image-name "$MYACR".azurecr.io/inventory-service:latest
 ```
 
 #### Front End App
@@ -136,7 +136,7 @@ az webapp create -g $MYRG -n "$MYID"inventory --plan <your service plan> --deplo
 Repeat the deployment, but this time for the frontend service
 
 ```
-az webapp create -g $MYRG -n "$MYID"frontend --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
+az webapp create -g $MYRG -n "$MYID"frontend --plan <your service plan> --deployment-container-image-name "$MYACR".azurecr.io/frontend-service:latest
 ```
 
 ### Service Configuration 
