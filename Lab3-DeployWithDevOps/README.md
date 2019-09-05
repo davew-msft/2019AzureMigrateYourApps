@@ -37,9 +37,10 @@
 
 ## Exercise 2: Configure Continuous Integration
 ### Task 1: Configure your basic Pipeline DevOps
-1. Log in portal Azure clicking here <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Falmvm%2Fmaster%2Flabs%2Fvstsextend%2Fdocker%2Farmtemplate%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" alt="Deploy to Azure"></a>
+1. Log in portal Azure and begin the deployment of Module 3 resources using this deployment script - click here <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Falmvm%2Fmaster%2Flabs%2Fvstsextend%2Fdocker%2Farmtemplate%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" alt="Deploy to Azure"></a>
+- Be sure to use lowercase letters with your initials.  Eg. - tjbmodule3
 
-2. Go to resources groups and select the resource named module-04-xxxxx Where xxxxx is the number obtained for the lab
+2. Go to resources groups and select the resource group you just created from the script above.
 ![](images/6.png)
 
 3. Open your **container registry** and take note of the **login server**
@@ -92,7 +93,7 @@
 
 ![](images/19.png)
 
-4. Click **Advanced options** as the image shown
+4. You can use the authorize button to create a service connection to Azure.  If you receive an error, click **Advanced options** as the image shown
 
 ![](images/20.png)
 
@@ -100,7 +101,7 @@
 
 ![](images/21.png)
 
-6. Set `serviceConnection` on **Connection name** input
+6. Set `serviceConnection` on **Connection name** input.  Contact a proctor for assistance in generating a Service Principal.
 
 7. Put your **Service Principal Details** given at the beginning of the lab and click in **Ok**
 - **Application/Client Id**
@@ -181,8 +182,8 @@
 1. Click on **Variables** tab
 2. Create these variables clicking on **+ Add** button
 
-Name: **BuildConfiguration** Value: **Release** check the _settable at queue time_
-Name: **BuildPlatform** Value: **Any CPU**
+- Name: **BuildConfiguration** Value: **Release** check the _settable at queue time_
+- Name: **BuildPlatform** Value: **Any CPU**
 
 ![](images/36.png)
 
