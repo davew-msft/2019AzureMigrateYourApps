@@ -260,6 +260,26 @@ That is is it!  We are done migrating the data and deploying a modern applicatio
 
 
 
+## Appendix 
+
+### Shared Connection Strings
+
+If you could not complete Lab 1 and do not have either an Azure SQL Instance or Cosmos DB instance  completed with data then you can use the connection strings below for your Inventory and Product services.
+
+Inventory
+
+```
+Server=tcp:chad1558sqlserver.database.windows.net,1433;Initial Catalog=chad1558SQLDB;Persist Security Info=False;User ID=migrateadmin;Password=AzureMigrateTraining2019#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+```
+
+Product
+
+```
+mongodb://migapp2cosmosdb:k6GiFd3f09fgFs5Qefxs2ykJeNgRME2fRj1d4PDh0ZcEXlTwk0hLN2hnOpfLZ3sME4chXAkD4M6SAoogAUc1Jg==@migapp2cosmosdb.documents.azure.com:10255/tailwind?ssl=true&replicaSet=globaldb
+```
+
+
+
 ## Learn More/Resources
 
 - 
