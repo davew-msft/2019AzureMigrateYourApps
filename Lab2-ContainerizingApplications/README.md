@@ -63,7 +63,9 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
 1. In your Azure Cloud Shell, set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry -  (prfex)cr.   (Do NOT use the full .azurecr.io UNC, only the name)
 
    ```bash
+   MYRG=<your Resource Group name>
    MYACR=<your ACR name>
+   MYID=<your unique id>
    ```
 
    
@@ -123,41 +125,19 @@ Now that we have compiled code in containers stored in the registry we now need 
 
 #### Inventory Service App
 
-1. Press the create resource button in the Azure portal
-2. Search for 'Web app for containers' and press enter
-3. Press Create
-4. Fill out parameters as follows
-   1. App Name: (prefix)inventory
-   2. Resource Group: (your resource group)
-   3. OS: Linux
-   4. Service Plan: Pick the same plan you created for the product service app.  You only need to create one plan that the web apps share.
-   5. Configure Container:
-      1. Pick Azure Container Registry
-      2. Pick your ACR
-      3. Select the inventory-service image
-      4. latest tag
-      5. Press Apply
-   6. Press Create
+We will deploy the rest of the services using the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (already pre-installed in the CloudShell) onto the same Service Plan. You will need to retrive the name of your newly created plan (from the previous step) and the fully qualified container image path using the Azure portal or the Azure cli.
+
+```
+az webapp create -g $MYRG -n '$MYID'inventory --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
+```
 
 #### Front End App
 
-1. Press the create resource button in the Azure portal
-2. Search for 'Web app for containers' and press enter
-3. Press Create
-4. Fill out parameters as follows
-   1. App Name: (prefix)frontend
-   2. Resource Group: (your resource group)
-   3. OS: Linux
-   4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.
-   5. Configure Container:
-      1. Pick Azure Container Registry
-      2. Pick your ACR
-      3. Select the frontend-service image
-      4. latest tag
-      5. Press Apply
-   6. Press Create
+Repeat the deployment, but this time for the frontend service
 
-
+```
+az webapp create -g $MYRG -n '$MYID'frontend --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
+```
 
 ### Service Configuration 
 
