@@ -128,7 +128,7 @@ Now that we have compiled code in containers stored in the registry we now need 
 We will deploy the rest of the services using the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (already pre-installed in the CloudShell) onto the same Service Plan. You will need to retrive the name of your newly created plan (from the previous step) and the fully qualified container image path using the Azure portal or the Azure cli.
 
 ```
-az webapp create -g $MYRG -n '$MYID'inventory --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
+az webapp create -g $MYRG -n "$MYID"inventory --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
 ```
 
 #### Front End App
@@ -136,7 +136,7 @@ az webapp create -g $MYRG -n '$MYID'inventory --plan <your service plan> --deplo
 Repeat the deployment, but this time for the frontend service
 
 ```
-az webapp create -g $MYRG -n '$MYID'frontend --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
+az webapp create -g $MYRG -n "$MYID"frontend --plan <your service plan> --deployment-container-image-name '$MYACR'.azurecr.io/frontend-service:latest
 ```
 
 ### Service Configuration 
@@ -236,15 +236,11 @@ You can get the base URL's for inventory and product services by clicking on the
 
 ##### Set Front End Web App Properties
 
-1. Click on resource groups -> (your resource group)
-2. Click on your front end resource of type 'App Service'
-3. Click Configuration on the left nav bar
-4. Click + New application setting to add each of these NAME/VALUE pairs
-   1. Name: INVENTORY_SERVICE_BASE_URL   Value: (your inventory base url)
-   2. Name: PRODUCT_SERVICE_BASE_URL   Value:  (your product service base url)
-5. Press Save
+We will now set the Front End application settings using the Azure Cli:
 
-
+```
+az webapp config appsettings set --resource-group $MYRG --name "$MYID"frontend --settings INVENTORY_SERVICE_BASE_URL='<your inventory base url>' PRODUCT_SERVICE_BASE_URL='<your product service base url>'
+```
 
 #### Run the App!
 
