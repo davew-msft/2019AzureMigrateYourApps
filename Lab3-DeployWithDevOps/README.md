@@ -38,12 +38,11 @@
 ## Exercise 2: Configure Continuous Integration
 ### Task 1: Configure your basic Pipeline DevOps
 1. Log in portal Azure and begin the deployment of Module 3 resources using this deployment script. Be sure to use lowercase letters with your initials Eg. - tjbmodule3.  Click the Deploy to Azure button to start <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2Falmvm%2Fmaster%2Flabs%2Fvstsextend%2Fdocker%2Farmtemplate%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" alt="Deploy to Azure"></a>
-- 
 
 2. Go to resources groups and select the resource group you just created from the script above.
 ![](images/6.png)
 
-3. Open your **container registry** and take note of the **login server**
+3. Open your **container registry** and take note of the **login server** - It's recommended to keep this browser tab open as you'll need these values later.
 ![](images/7.png)
 
 ![](images/8.png)
