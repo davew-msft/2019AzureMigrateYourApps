@@ -188,6 +188,9 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
    
 6. You should have two app settings something like this ![productappsettings](../images/productappsettings.png)
 
+**Note**: Connection strings can also be resolved from [Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/) using [Key Vault references](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references).
+
+
 7. Press Save
 
 #### Inventory Service
