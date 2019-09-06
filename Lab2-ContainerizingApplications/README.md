@@ -84,7 +84,7 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
    4. Click 'Repositories' in the left navigation
    5. You should see your product-service in the repositories list ![DeployContainer](../images/DeployContainer.png)
 
-4. Build the inventory service and frontend containers.
+4. Build the inventory service and frontend containers.****
 
    ```
    az acr build -t inventory-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/inventory-service/InventoryService.Api
@@ -108,56 +108,66 @@ Now that we have compiled code in containers stored in the registry we now need 
 2. Search for 'Web app for containers' and press enter
 3. Press Create
 4. Fill out parameters as follows
-   1. App Name: (prefix)product
-   2. Resource Group: (your resource group)
-   3. OS: Linux
-   4. Service Plan: Create New
-      1. App Service Plan: (prefix)serviceplan
-      2. Location: eastus2
-      3. Pricing: Dev/Test - B1
-   5. Configure Container:
-      1. Pick Azure Container Registry
-      2. Pick your ACR
-      3. Select the product-service image
-      4. latest tag
-      5. Press Apply
-   6. Press Create
+   1. Basics Tab
+      1. **Resource Group:** (your resource group)
+      2. **Name:** (prefix)product
+      3. **Publish:** Docker Image
+      4. **OS:** Linux
+      5. **Region:** Use the same US region as other labs
+      6. **Service Plan:** Press Create New
+         1. Rename to:  (prefix)serviceplan
+      7. **Pricing:** Change Size - > Dev/Test -> B1
+   2. Docker Tab:
+      1. **Options:** Single Container
+      2. **Image Source:** Azure Container Registry
+      3. **Registry:** Pick your ACR
+      4. **Image:** Select the product-service image
+      5. **<u>Tag</u>:** latest
+   3. Press Review and Create
+   4. Press Create
 
 #### Inventory Service App
 
 1. Press the create resource button in the Azure portal
-2. Search for 'Web app for containers' and press enter	
-3. Press Create	
-4. Fill out parameters as follows	
-   1. App Name: (prefix)inventory	
-   2. Resource Group: (your resource group)	
-   3. OS: Linux	
-   4. Service Plan: Pick the same plan you created for the product service app.  You only need to create one plan that the web apps share.	
-   5. Configure Container:	
-      1. Pick Azure Container Registry	
-      2. Pick your ACR	
-      3. Select the inventory-service image	
-      4. latest tag	
-      5. Press Apply	
-   6. Press Create
-   
+2. Search for 'Web app for containers' and press enter
+3. Press Create
+4. Fill out parameters as follows
+   1. Basics Tab
+      1. **Resource Group:** (your resource group)
+      2. **Name:** (prefix)inventory
+      3. **Publish:** Docker Image
+      4. **OS:** Linux
+      5. **Region:** <u>Use the same region as the Product Service</u>
+      6. **Service Plan:** Pick the same service plan that you created for the Product Service.  We do not need to create more than one service plan.  All the Web Apps can share the compute.
+   2. Docker Tab:
+      1. **Options:** Single Container
+      2. **Image Source:** Azure Container Registry
+      3. **Registry:** Pick your ACR
+      4. **Image:** Select the inventory-service image
+      5. **Tag:** latest
+   3. Press Review and Create
+   4. Press Create
 #### Front End App
 
 1. Press the create resource button in the Azure portal
-2. Search for 'Web app for containers' and press enter	
-3. Press Create	
-4. Fill out parameters as follows	
-   1. App Name: (prefix)frontend	
-   2. Resource Group: (your resource group)	
-   3. OS: Linux	
-   4. Service Plan: Pick the same plan you created for the service app.  You only need to create one plan that the web apps share.	
-   5. Configure Container:	
-      1. Pick Azure Container Registry	
-      2. Pick your ACR	
-      3. Select the frontend-service image	
-      4. latest tag	
-      5. Press Apply	
-   6. Press Create
+2. Search for 'Web app for containers' and press enter
+3. Press Create
+4. Fill out parameters as follows
+   1. Basics Tab
+      1. **Resource Group:** (your resource group)
+      2. **Name:** (prefix)frontend
+      3. **Publish:** Docker Image
+      4. **OS:** Linux
+      5. **Region:** <u>Use the same region as the Product Service</u>
+      6. **Service Plan:** Pick the same service plan that you created for the Product Service.  We do not need to create more than one service plan.  All the Web Apps can share the compute.
+   2. Docker Tab:
+      1. **Options:** Single Container
+      2. **Image Source:** Azure Container Registry
+      3. **Registry:** Pick your ACR
+      4. **Image:** Select the frontend-service image
+      5. **Tag:** latest
+   3. Press Review and Create
+   4. Press Create
 
 ### Service Configuration 
 
@@ -166,6 +176,10 @@ We now have web apps created for all our resources.  The last thing we need to d
 #### Product Service
 
 The product service uses the NOSQL data that was in the on-premise MogoDB.  We successfully migrated that data to Cosmos DB, so that is what we will configure our Product Service for.
+
+> **Note:** If you were unable to finish Lab 1 and do not have a CosmosDB with data in it.  See the appendix at the end of this lab for a connection string to a shared instance you can use.
+
+
 
 ##### Get the Cosmos DB connection string
 
@@ -188,7 +202,7 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
 4. Here you will see some default application setting.  We will add a few more.
 
 5. Click + New application setting to add each of these NAME/VALUE pairs
-   1. **Name**: COLLECTION_NAME   **Value**: inventory
+   1. **Name**: COLLECTION_NAME   **Value**: inventory - > Press OK
    
    2. **Name**: DB_CONNECTION_STRING  **Value**:  (paste in the Cosmos DB connection String)
    
@@ -208,10 +222,12 @@ The product service uses the NOSQL data that was in the on-premise MogoDB.  We s
    
 6. You should have two app settings something like this ![productappsettings](../images/productappsettings.png)
 
-**Note**: Connection strings can also be resolved from [Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/) using [Key Vault references](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references).
-
 
 7. Press Save
+
+**Note**: Connection strings can also be resolved from [Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/) using [Key Vault references](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references).  We are not using Key Vault for this lab, but these are good references to review.
+
+
 
 #### Inventory Service
 
