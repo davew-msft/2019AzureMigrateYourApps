@@ -58,7 +58,7 @@ One thing to consider is that some resources have a limit to how many characters
 
    1. Resource Group: Use the Resource Group you were assigned
    2. VM Name: '(prefix)OnPremSQL'
-   3. Region: 'East US 2'
+   3. Region: Use the default region if it is in the  US.  If not, change to any US region.
    4. Change Size to: D2 v3
    5. Username: 'migrateadmin'
    6. Password: 'AzureMigrateTraining2019#'
@@ -90,7 +90,7 @@ In this exercise we will create an instance of the Azure Database Migration Serv
 5. Enter Parameters
    1. Service Name: '(prefix)MigrationService'
    2. Resource Group: Your assigned Resource Group
-   3. Location: East US 2
+   3. Location:  Use the default region if it is in the  US.  If not, change to any US region.
    4. Virtual Network ->  <resource group>-vnet/default
 6. Pricing Tier: Standard 1v core
 7. Press Create
@@ -121,8 +121,8 @@ Follow these steps:
   * The account name - This MUST be unique.  Create a prefix that would be unique to your.  Possibly your initials and a few digits.
 
 ```language-bash
-RESOURCE_GROUP_COSMOS='<Your resoruce group name'
-LOCATION_COSMOS='eastus2'
+RESOURCE_GROUP_COSMOS='<Your resoruce group name>'
+LOCATION_COSMOS='<use same region as you have for other resources>'
 ACCOUNT_NAME_COSMOS='(prefix)migrationcosmos'
 ```
 5. Copy the below command and execute it (you can paste in command window with a  right click).  This will create the Azure Cosmos DB Account and place it into the resource group you just created.  
