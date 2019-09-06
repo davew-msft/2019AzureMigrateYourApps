@@ -60,12 +60,12 @@ Now we get into the really exciting stuff!  We have an existing code base for ou
 
 ### Build the code and deploy to ACR
 
-1. In your Azure Cloud Shell, set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry -  (prfex)cr.   (Do NOT use the full .azurecr.io UNC, only the name)
+1. In your Azure Cloud Shell, set an environment variable to the name of your Azure Container Registry (ACR).  It is the name you put in the Registry Name property when you created the registry -  (prefix)acr.   (Do NOT use the full .azurecr.io UNC, only the name)
 
    ```bash
    MYRG=<your Resource Group name>
    MYACR=<your ACR name>
-   MYID=<your unique prefix>
+   MYID=<your prefix>
    ```
 
    
