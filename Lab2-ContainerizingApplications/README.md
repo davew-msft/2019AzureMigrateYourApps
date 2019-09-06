@@ -272,7 +272,9 @@ You can get the base URL's for inventory and product services by clicking on the
 
 ##### Set Front End Web App Properties
 
-We will now set the Front End application settings using the Azure Cli:
+We will now set the Front End application settings using the Azure Cli:  Copy the below code and replace the base URL placehoders with the URL's of your services.
+
+> Note: If you closed the command window you may have lost the values for the initial environment variables we setup.  You may need to redefine MYRG and MYID again.
 
 ```
 az webapp config appsettings set --resource-group $MYRG --name "$MYID"frontend --settings INVENTORY_SERVICE_BASE_URL='<your inventory base url>' PRODUCT_SERVICE_BASE_URL='<your product service base url>'
