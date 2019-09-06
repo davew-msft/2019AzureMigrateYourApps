@@ -116,7 +116,7 @@ Follow these steps:
 1. Wait for the shell to start.
 1. Make sure you are in  `bash` from the dropdown of the Cloud Shell window.  ![CreateBash4](../images/CreateBash4.png)
 1. First off create 3 Bash variables by typing the following in the shell and press enter:
-  * Resource Group Name - Make sure to set this to YOUR resource group name
+  * Resource Group Name - Make sure to set this to YOUR resource group 1 name.  
   * Region to host the Azure Cosmos DB instance
   * The account name - This MUST be unique.  Create a prefix that would be unique to your.  Possibly your initials and a few digits.
 
@@ -159,7 +159,7 @@ We will now create a PaaS instance of SQL server to migrate our on-premises data
       1. Server Name: (prefix)sqlserver
       2. Server Admin: 'migrateadmin'
       3. Password: 'AzureMigrateTraining2019#'
-      4. Location: US East 2
+      4. Location: <Use the same US region as you have before>
       5. Check - Allow Azure services to access server
    4. Press 'Review and Create'
    5. Press 'Create'
