@@ -10,6 +10,8 @@ The story goes that, Tailwind Traders acquired Northwind Traders earlier this ye
 
 The readme in the presentation folder will give you an update as to when that presentation was last validated.  Please check the date and augment as necessary to be accurate.  There are five presentations to match the five informational sessions in the agenda.  See the below section on Session Notes for more details on each of those.
 
+AzureLabSetup.PPTX - There is a presentation to use as a template to display for the class for you to put up your WiFi information.   There is also a place to advertise the Azure lab setup URL and Access Code.  Secondary slides show screenshots of what you will get when singing up for a lab.
+
 ## Labs 
 
 The lab folders are self contained labs.  You should not need to go to other resources to run the labs.  Attendee's will need a laptop, but only an Azure browser is required.  All work will be done in the portal and the Azure Comannd Shell.  If you think attendee's laptops may be locked down to the point that they can't access Azure, than having a laptop for loan will be a good idea.  No special software needs to be installed though. 
@@ -73,6 +75,7 @@ You Lab 1 and 2 together create a demo that shows an application migrated to the
 - **Notes**
   - Everything needed for the SQL Azure migration is in the lab
   - The MongoDB that you migrate from is a shared instance setup for this series.  It will be up and running until the end of 12/2019.  If you need to set one up for your use see the appendix notes below.
+  - The databases created in this lab are used in Lab 2.  If the students do not finish this lab they can use a SQL Server and Cosmos DB that are shared instances that are up and running.  Connection string information is in the Appendix of Lab 2.
 
 
 
@@ -103,6 +106,7 @@ You Lab 1 and 2 together create a demo that shows an application migrated to the
 - **Notes**
   - Everything should be able to run from the Azure Bash shell.
   - There are a few manual replacements code in the configuration parameters of the Web Services.  Students could get caught in typos here.
+  - You need the databases created in Lab 1.  If the students did not finish that lab there is an appendix in this lab that has connection strings to shared instances of SQL and Cosmos DB.  They can use those to finish the lab.
 
 ### Session 6 - Serverless Computing - Bring you app to the next level
 
