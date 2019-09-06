@@ -17,9 +17,11 @@
 
 ![](images/1.png)
 
-2. Set the **Project name** you want
-3. In **visibility** select **Private**
-4. Click on **Advanced**, in **Version control** select **GIT** and **Work item process** select Scrum then click on **+ Create project** 
+2. Login with the same credentials you were given for Azure if you are not logged in already.
+3. Press New Project
+4. Set the **Project name** you want
+5. In **visibility** select **Private**
+6. Click on **Advanced**, in **Version control** select **GIT** and **Work item process** select Scrum then click on **+ Create project** 
 
 ![](images/2.png)
 
@@ -204,7 +206,9 @@
 ## Task 9: Set your host
 1. Click on **Tasks** tab
 2. Click on Pipelines
-3. Select **Hosted Ubuntu 1604** option from **Agent Pool** dropdown
+3. Select 
+   1. Agent Pool: Azure Pipelines
+   2. Agent Specification: **Ubuntu 16.04** 
 
 ![](images/41.png)
 
