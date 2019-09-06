@@ -27,6 +27,19 @@ The original code base of the database and application migration labs are from t
 
 You should not need to do anything with the setup files.  There is a backup file for SQL that is used during the database migration lab.  There is also a MongoDB backup in case you need to create your own MongoDB server.  See notes about that in Session 3.
 
+## Azure Environments
+
+You can do all these labs in your own environment, but for the scheduled marketing classes we will have lab environment provisioned by a partner.  
+
+1. You will get a unique link and activation code for your event in email
+2. You will give the link and code to the students and they will all sign up for a lab in the beginning of the session
+3. There is a PPT in the presentations folder that you can use to show students the information to connect.
+4. The labs will all have three resource groups as follows
+   1.  RC1 - Empty and used to create all assets for Lab 1 and Lab 2.  Please direct students accordingly.
+   2. RG2 - Contains a SQL VM.  This can be used as the OnPrem SQL VM for Lab 2.  Use it to either save time of creating a VM or if Azure is slow to create VM's for some reason.  Depending on your audience it may be worth them creating it for the experience.  For others may be just time consuming.  Your call as to use this or not.  It is basically a backup.
+   3. RG3 - Resources for the DevOps Lab 3.  
+5. Participants will land on a page with login information for the SQL VM as well as the Service Principal needed for Lab 3.  Make sure they save this info or that they also received the email with this in it.
+
 ## Demo Setup
 
 You Lab 1 and 2 together create a demo that shows an application migrated to the cloud.  You should create a finished environment so you can show the end result during session 1.  You have two choices to get an environment up and running:
@@ -143,7 +156,8 @@ You Lab 1 and 2 together create a demo that shows an application migrated to the
 - **Notes**
 
   - This lab is not connected to the source code from the previous lab.  It is complete independent and different.  Due to time we could not create a lab based on the previous code base, so this was reused from another training session.
-
+- This will require a service principal.  This service principal is all ready setup and the students have it in their email and on the lab landing page they got after signing up for the lab environment.
+  
   
 
 ### Appendix A - Create a Linux MongoDB
