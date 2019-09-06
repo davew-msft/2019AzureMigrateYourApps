@@ -159,7 +159,7 @@ We will now create a PaaS instance of SQL server to migrate our on-premises data
       1. Server Name: (prefix)sqlserver
       2. Server Admin: 'migrateadmin'
       3. Password: 'AzureMigrateTraining2019#'
-      4. Location: <Use the same US region as you have before>
+      4. Location: -- Use the same region as the other resources created --
       5. Check - Allow Azure services to access server
    4. Press 'Review and Create'
    5. Press 'Create'
