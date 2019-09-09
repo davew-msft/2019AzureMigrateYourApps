@@ -40,6 +40,10 @@ One thing to consider is that some resources have a limit to how many characters
 
 ### Setup 1 - Create SQL VM
 
+**This step can be skipped, if desired and in the interest of time. You can instead use the following VM information from our "shared lab" SQL Server where everything is already created. Connectivity information will be provided below.**
+
+
+
 1. Login to the Azure Portal http://portal.azure.com
 
 2. Press the create new resource button in the upper left toolbar
@@ -174,6 +178,8 @@ We will be using the [Database Migratrion Tool](https://www.microsoft.com/en-us/
 
 #### Finish On-Prem Configuration
 
+**This step can be skipped *if* you are using the VM and database we provide for you, noted above.  If you want to learn the steps to restore a database to an Azure VM you may do these steps.**
+
 By now the SQL Server VM you created should be finished provisioning.  We need to do a couple of extra steps to get it ready to migrate. 
 
 1. On the left hand side of the Azure portal click on the resource group icon
@@ -199,14 +205,24 @@ By now the SQL Server VM you created should be finished provisioning.  We need t
 7. Follow the wizard to import the backup file you downloaded.
 8. When complete - Right click on the database folder and select 'refresh'
 9. You should now see the TailwindInventory DB installed.
-10. Open IE and either search for 'Microsoft Database Migration Assistant' or download from:
+
+#### Download Microsoft DMA to your local laptop
+
+10. Open a web brower and either search for 'Microsoft Database Migration Assistant' or download from:
     1. https://www.microsoft.com/en-us/download/details.aspx?id=53595
 11. Install the Data Migration Assistant
 
-We are now all set to migrate our SQL Database.  We have a restored copy of the data on this local server and we have the migration assistant ready to help us migrate the data to an Azure SQL Instnace.
+We are now all set to migrate our SQL Database.  We have a restored copy of the data on either this local server (if you did the previous section's steps) or the shared SQL Server, and we have the migration assistant ready to help us migrate the data to an Azure SQL Instance.
 
 #### Assessment
 First we need to do an assessment.  The tool will check the local db for compatibility issues.
+
+**If using the shared lab SQL Server, use the following connection string information:**
+
+* Server:  40.71.92.209
+* SQL Login:  dbadmin
+* SQL Password:  Password01!!
+* Database:  TailwindInventory
 
 1. Open the Data Migration Assistant from the desktop icon
 2. Create a new project
@@ -239,9 +255,6 @@ Now that we know our database can be migrated we will use the Migration tool to 
 - Migration Scope: `Schema Only`
 
 1. Click `Create`
-2. Source Server: localhost
-3. Authentication type: Windows
-4. UN-Check the Encrypt Connection box
 5. Click Connect
 6. Select the `TailwindInventory` database, click `Next`
 7. Target Server:  This will be the Azure SQL Server Instance we created.  
