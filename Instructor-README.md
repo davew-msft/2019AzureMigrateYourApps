@@ -39,6 +39,7 @@ You can do all these labs in your own environment, but for the scheduled marketi
    2. RG2 - Contains a SQL VM.  This can be used as the OnPrem SQL VM for Lab 2.  Use it to either save time of creating a VM or if Azure is slow to create VM's for some reason.  Depending on your audience it may be worth them creating it for the experience.  For others may be just time consuming.  Your call as to use this or not.  It is basically a backup.
    3. RG3 - Resources for the DevOps Lab 3.  
 5. Participants will land on a page with login information for the SQL VM as well as the Service Principal needed for Lab 3.  Make sure they save this info or that they also received the email with this in it.
+6. **<u>SUPPORT:</u>** If you have any issues during your event with a pre-provisioned environment please email cloudlabs-support@spektrasystems.com.  There is a 15 min response SLA.
 
 ## Demo Setup
 
