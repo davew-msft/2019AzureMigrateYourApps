@@ -21,7 +21,7 @@
 3. Press New Project
 4. Set the **Project name** you want
 5. In **visibility** select **Private**
-6. Click on **Advanced**, in **Version control** select **GIT** and **Work item process** select Scrum then click on **+ Create project** 
+6. Click on **Advanced**, in **Version control** select **GIT** and in **Work item process** select **Scrum** then click on **+ Create project** 
 
 ![](images/2.png)
 
