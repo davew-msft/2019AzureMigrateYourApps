@@ -29,7 +29,7 @@ You should not need to do anything with the setup files.  There is a backup file
 
 ## Azure Environments
 
-You can do all these labs in your own environment, but for the scheduled marketing classes we will have lab environment provisioned by a partner.  
+You can do all these labs in your own environment, but for the scheduled marketing classes youwill have lab environment provisioned by a partner.  
 
 1. You will get a unique link and activation code for your event in email
 2. You will give the link and code to the students and they will all sign up for a lab in the beginning of the session
@@ -46,7 +46,7 @@ You can do all these labs in your own environment, but for the scheduled marketi
 You Lab 1 and 2 together create a demo that shows an application migrated to the cloud.  You should create a finished environment so you can show the end result during session 1.  You have two choices to get an environment up and running:
 
 1. Run though the labs yourself and in the end you should have the full demo
-2. You can use this [IgniteTheTour-DEV10](https://github.com/microsoft/IgniteTheTour/tree/master/DEV%20-%20Building%20your%20Applications%20for%20the%20Cloud/DEV10) repo and deploy the deployment/deploy.sh script.  Please use the Azure Bash shell as we know it has all the dependencies.   That should create a fully working environment. 
+2. You can use this [IgniteTheTour-DEV10](https://github.com/microsoft/IgniteTheTour/tree/master/DEV%20-%20Building%20your%20Applications%20for%20the%20Cloud/DEV10) repo and deploy the deployment/deploy.sh script.  Please use the Azure Bash shell as you know it has all the dependencies.   That should create a fully working environment. 
 
 ## Session Notes
 
