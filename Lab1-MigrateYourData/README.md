@@ -301,7 +301,7 @@ You can do all this from the Azure Bash Shell
 1. Dump the data from the remote MongoDB with the following Command
 
    1. ```bash
-      mongodump --host 40.70.205.251 --username=labuser --password=AzureMigrateTraining2019# --db=tailwind --authenticationDatabase=tailwind
+      mongodump --host 52.175.230.38 --username=labuser --password=AzureMigrateTraining2019# --db=tailwind --authenticationDatabase=tailwind
       ```
 
 3. Check to see that you successfully dumped the data
