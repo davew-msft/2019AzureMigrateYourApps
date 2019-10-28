@@ -134,28 +134,17 @@ In this lab you will migrate the on premises SQL Server to an instance of SQL Az
    1. If not already showing, Select the 'Windows' key and type 'Server Manager' to go into the server manager 
    2. Select `Local Server` from the left-pane menu
    2. Select `IE Enhanced Security Configuration` on the right ![IE-EnhancedSec1](../images/IE-EnhancedSec1.png)
-   3. Set to 'off' for Administrator if it isn't already set
-       ![IE-EnhancedSec2](../images/IE-EnhancedSec2.png)
+   3. Set to 'off' for Administrator if it isn't already set ![IE-EnhancedSec2](../images/IE-EnhancedSec2.png)
    4. Close the Server Manager
-6. Download and restore the database.  The inventory database is stored in the repository as a SQL .bakpac file needs to be restored.
-   1. Download the TailwindInventory.bacpac backup file from the setupfiles directory of this Github Repo. https://github.com/chadgms/2019AzureMigrateYourApps/blob/master/setupfiles/TailwindInventory.bacpac
-      ![SQLBackupDownload](../images/SQLBackupDownload.png)
-   2. Click the Windows start menu and type 'SQL Server Management'
-   3. Launch the SQL Server Management Studio and connect to the local SQL instance.
-   4. Right click on the Database folder and select 'Import Data-tier Application'
-   ![ImportDAC](../images/ImportDAC.png)
-   
-7. Follow the wizard to import the backup file you downloaded.
-8. When complete - Right click on the database folder and select 'refresh'
-9. You should now see the TailwindInventory DB installed.
-10. Open IE and either search for 'Microsoft Database Migration Assistant' or download from:
-    1. https://www.microsoft.com/en-us/download/details.aspx?id=53595
-11. Install the Data Migration Assistant
+6. Verify the TailWindInventory DB is installed. This is the databse we will migrate
+   1. From the Windows start menu, type 'SQL Server Management'
+   2. Launch the SQL Server Management Studio and connect to the local SQL instance
+   3. You should see the TailwindInventory DB installed
 
-You are now all set to migrate our SQL Database.  You have a restored copy of the data on this local server and you have the migration assistant ready to help us migrate the data to an Azure SQL Instnace.
+You are now all set to migrate the SQL Database using the Data Migration Assistant
 
 #### Assessment
-First you need to do an assessment.  The tool will check the local db for compatibility issues.
+First you need to do an migration assessment to ensure the database has no issues
 
 1. Open the Data Migration Assistant from the desktop icon
 2. Create a new project
@@ -206,7 +195,7 @@ Now that you know our database can be migrated you will use the Migration tool t
 13. Select all tables and press 'Generate SQL script'
 14. Once the script is generated, you may review it
 15. Press 'Deploy Schema'
-16. You now have your schema successfully migrated to Azure SQL DB.
+16. You now have your schema successfully migrated to Azure SQL DB
 
 #### Data Migration
 
