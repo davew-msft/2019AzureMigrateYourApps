@@ -10,18 +10,18 @@ The goals of this lab is to get you familiar with the Azure environment, portal 
 - Migrate a SQL Server 2017 DB to Azure SQL Database
 
 ## Setup Environment
-You will need a few things in your environment setup for this lab.
+You will need a few things in your environment setup for this lab:
 
-- A SQL Server VM that will act as our on-premise SQL instance that you will migrate to Azure SQL DB
+- A SQL Server VM that will act as your on-premise SQL instance that you will migrate to Azure SQL DB
   -	A SQL Server VM has been pre-provisioned for this exercise
 - An Azure SQL Database Instance.  This is the SQL PaaS service you will migrate the on-premise server to.
   - You will create this as part of the lab
 - A Mongo DB that you will migrate data from to Cosmos DB
-  - A public Mongo DB will be made available to you to access remotely.
-- An Azure Cosmos DB instance
+  - A public Mongo DB will be made available to you to access remotely
+- An Azure Cosmos DB MongoDB instance
   - You will create this as part of the lab
 - The Microsoft Data Migration Assistant 
-  - You will install this on the pre-provisioned SQL VM
+  - This has been pre-provisioned on the source SQL VM
 - An Azure Database Migration Service
   - An Azure Database Migration Service has been pre-provisioned for this exercise 
 
@@ -39,19 +39,20 @@ One thing to consider is that some resources have a limit to how many characters
 
 1. Login to the Azure Portal http://portal.azure.com using your assigned credentials
 2. Select `Virtual Machines` from the left-pane menu in the Azure Portal (you might need to expand the left pane)
-3. Verify the presence of the VM named 'OnPremSQL' and its Status is 'running'
+3. Verify the presence of the VM named 'OnPremSQL' and its status is 'running'.  If it's not running, start it from the top menu
 4. This is the SQL VM you will use as the source database for the migration
 
 
 ### Setup 2 - Verify Azure Database Migration Service
 
-1. From the Azure Portal, select `Resource Group` from the left-pane menu then select the resource group named 'Lab-1-xxxxx'
+1. From the Azure Portal, select `Resource Groups` from the left-pane menu then select the resource group named 'Lab-1-xxxxx'
 2. Verify the presence of the Azure Database Migration Service
+3. Ensure the Migration Service is started by checking its status and starting the service from the top menu as needed
 3. This migration service instance will be used when we migrate the on-premises SQL database to Azure
 
 ### Setup 3 - Create an Azure Cosmos DB account with Cloud Shell
 
-Up until now you have used the Azure Web Portal to create needed resources.  In this exercise, you will create an Azure Cosmos DB account using the Azure Command Line Interface (CLI) and the Azure Cloud Shell.
+Up until now you have used the Azure Web Portal.  In this exercise, you will create an Azure Cosmos DB account using the Azure Command Line Interface (CLI) in the Azure Cloud Shell.
 
 The Azure Cloud Shell is a command shell that runs in your browser; it creates compute in the back end and a storage account.  You can run either PowerShell or Bash; for these exercises you will use Bash
 
@@ -74,7 +75,7 @@ RESOURCE_GROUP_COSMOS='<your resource group named 'Lab-1-xxxxx'>'
 LOCATION_COSMOS='eastus'
 ACCOUNT_NAME_COSMOS='(prefix)migrationcosmos'
 ```
-5. Copy the below command and execute it (you can paste in command window with a  right click).  This will create the Azure Cosmos DB Account using the Azure CLI (az commands)
+5. Copy the command below and execute it (you can paste in command window with a  right click).  This will create the Azure Cosmos DB Account using the Azure CLI (az commands)
 
 ```language-bash
 az cosmosdb create --resource-group $RESOURCE_GROUP_COSMOS --name $ACCOUNT_NAME_COSMOS --kind MongoDB --locations regionName=$LOCATION_COSMOS
@@ -89,18 +90,11 @@ While you wait for your Cosmos DB instance to spin up you can move on to the cre
 
 You will now create a SQL Server PaaS instance - this is the target database for your SQL migration
 
-1. Select the `Create a resource` button in the top-left of the Azure portal
-
+1. Select the `Create a resource + sign` button in the top-left of the Azure portal
 2. Type 'SQL Database' in the search box and press enter
-
-3. Select SQL Database
-
-   ![SQLDatabaseCard](../images/SQLDatabaseCard.png)
-
+3. Select SQL Database ![SQLDatabaseCard](../images/SQLDatabaseCard.png)
 4. Select `Create`
-
 5. From the Basics tab in the menu
-
    1. Resource Group: Set to the 'Lab-1-xxxxx' resource group
    2. Database Name: (prefix)SQLDB
    3. Server - Select `Create New` on the Database detail section
@@ -118,7 +112,7 @@ You will now create a SQL Server PaaS instance - this is the target database for
 This will take a couple of minutes to complete.  Once finished, all of your setup is completed for Lab Exercises!
 
 
-### Exercise 1  -  Assess DB Migration Using the DB Migration Tool Migrate Using Azure Database Migration 
+### Exercise 1  -  Assess the source database and migrate it to Azure 
 
 In this lab you will migrate the on premises SQL Server to an instance of SQL Azure DB using the [Database Migratrion Tool](https://www.microsoft.com/en-us/download/details.aspx?id=53595)
 
@@ -201,8 +195,8 @@ Now that you know our database can be migrated you will use the Migration tool t
 
 Now that you have the schema migrated, you now need to move the data.  You will use the Azure Data Migration Service for this as it is much more robust option and can migrate the data with very minimal downtime. 
 
-1. In the Azure Portal click on the resource group icon and select your resource group.
-2. Find the resource of type 'Azure Database Migration Service' and click it.
+1. In the Azure Portal, select `Resource groups` from the left-pane menu and then select the 'Lab-1-xxxxx' resource group
+2. Select the 'Azure Database Migration Service' resource
 4. Click on `Create new migration project`
 5. Project name: `tailwind`
 6. Source server type: `SQL Server`
@@ -230,24 +224,23 @@ Now that you have the schema migrated, you now need to move the data.  You will 
 7. Give a name to the migration activity and select "Don't Validate the Database" in the database validation options.
 8. Run the migration
 
-**<u>Congratulations!</u>**  You have successfully migrated from the VM instance of SQL to Azure SQL DB!  You can check to see the data is there by using the portal based query tool.
+**<u>Congratulations!</u>**  You have successfully migrated from the VM instance of SQL to Azure SQL DB!  You can check to see the data is there by using the portal based query tool
 
-By default Azure SQL Databases reject all traffic to them.  You were able to run the Azure Database Migration tool because you checked the box to allow other Azure services to connect to it.  I in order to connect to it via other tools you need to open an exception for our IP address through the firewall.
+By default Azure SQL Databases reject all traffic to them.  You were able to run the Azure Database Migration tool because you checked the box to allow other Azure services to connect to it.  In order to connect to it via other tools, you need to open an exception for your IP address through the firewall.
 
 ##### Modify SQL Firewall
 
 1. Click on your resource group
-2. Click on your Azure SQL Server Instnace
-3. Click on Firewalls and virtual networks in the left hand pane
+2. Click on your Azure SQL Server Instance
+3. From `Overview`, select `Set server firewall` from the top menu
 4. You will see your client IP address listed.   You need to create a new rule allowing that IP like this ![SetSQLIP](../images/SetSQLIP.png)
 5. Press Save
 
 ##### Check your data in SQL
 
-1. Click on your resource group
-2. Click on your Azure SQL DB database
-3. Click Query Editor on the left toolbar
-4. Login as migrateadmin
+2. From your Azure SQL DB database, select `Query Editor` on the left-hand menu pane
+4. Login as user 'migrateadmin'
+Password is 'AzureMigrateTraining2019#'
 5. Expand tables - you should see all your tables.
 6. Run - 'select * from inventory' and you should see all your inventory data.
 
@@ -257,7 +250,7 @@ The next step is to get the product database migrated to Azure.  Here you are mo
 
 #### Connect to the MongoDB Linux VM
 
-You have a shared Linux VM that is simulating the production MogoDB product database.  You will connect remotely to this server in order to get a dump of data to put into the Cosmos DB.   The great thing about this is that Cosmos DB can use standard MongoDB tools.
+You have a shared Linux VM that is simulating the production MongoDB product database.  You will connect remotely to this server in order to get a dump of data to put into the Cosmos DB.   The great thing about this is that Cosmos DB can use standard MongoDB tools.
 
 You can do all this from the Azure Bash Shell
 
@@ -307,7 +300,7 @@ Now that you have a copy of the data locally, you can use the mongorestore comma
 First check to make sure the Cosmos DB instance was created successfully.  
 
 1. In the Azure portal click on the resource groups on the left toolbar
-2. Click on your Resource Group.
+2. Click on your Resource Group
 3. You should see a resource of type 'Azure Cosmos DB account' - Click that
 4. Click on 'Data Explorer' on the left navigation.  You should see something the following:
    ![cosmosempty](../images/cosmosempty.png)
@@ -336,7 +329,6 @@ First check to make sure the Cosmos DB instance was created successfully.
    > ```
 
    
-
 5. Make sure you are still in the /dump/tailwind directory still
 
 6. Copy and paste this command to run a mongo restore:
