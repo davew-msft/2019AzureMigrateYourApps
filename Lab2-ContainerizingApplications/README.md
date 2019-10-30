@@ -25,7 +25,7 @@ The source code for all three projects are in this repo.  You will first pull it
 
 1. Launch a new Azure Command Shell.  You can either:
 
-   1. Press the shell icon in the Azure Portal, as in the setup for the Cosmos DB
+   1. Select the shell icon in the Azure Portal, as in the setup for the Cosmos DB
    2. Open a new browser tab to:  http://shell.azure.com for a full screen experience
 2. Pull down the source code locally.  Run the following git command 
 
@@ -92,9 +92,9 @@ Now that you have compiled code, you need to deploy them to a compute platform. 
 
 #### Product Service App
 
-1. Press the create resource button in the Azure portal
+1. Select `Create a resource` button in the Azure portal
 2. Search for 'Web app for containers' and press enter
-3. Press `Create`
+3. Select `Create`
 4. Fill out parameters as follows
    1. Basics Tab
       1. **Resource Group:** use Lab-2-xxxxx
@@ -102,7 +102,7 @@ Now that you have compiled code, you need to deploy them to a compute platform. 
       3. **Publish:** Docker Container
       4. **OS:** Linux
       5. **Region:** Use 'East US'
-      6. **Service Plan:** Press Create New
+      6. **Service Plan:** Select `Create New`
          1. Rename to:  (prefix)serviceplan
       7. **Pricing:** Change Size - > Dev/Test -> B1
    2. From the Docker tab on the top menu:
@@ -134,12 +134,12 @@ Now that you have compiled code, you need to deploy them to a compute platform. 
       4. **Image:** Select the inventory-service image
       5. **Tag:** latest
    3. Select `Review + create`
-   4. Press `Create`
+   4. Select `Create`
 #### Front End App
 
-1. Press the create resource button in the Azure portal
+1. Select `Create a resource` button in the Azure portal
 2. Search for 'Web app for containers' and press enter
-3. Press Create
+3. Select `Create`
 4. Fill out parameters as follows
    1. Basics Tab
       1. **Resource Group:** use Lab-2-xxxxx
@@ -182,7 +182,7 @@ The product service uses the NOSQL data that was in the on-premise MongoDB.  You
 3. Select `Configuration` on the left-pane menu
 4. Here you will see some default application setting, and you will add a few more.
 5. Select `+ New application setting` to add each of these NAME/VALUE pairs
-   1. **Name**: COLLECTION_NAME   **Value**: inventory - > Press OK
+   1. **Name**: COLLECTION_NAME   **Value**: inventory - > Select `OK`
    2. **Name**: DB_CONNECTION_STRING  **Value**:  (paste in the Cosmos DB connection String)
       1. **IMPORTANT:** You need to add the database name 'tailwind' to the connection string.  You will see the server address:port and the the /?ssl flag like this: 
    
@@ -228,8 +228,8 @@ The inventory service needs to be pointed to the SQL Database that now lives in 
       1. User ID='migrateadmin'
       2. Password='AzureMigrateTraining2019#' ![SQLConnectionString](../images/SQLConnectionString.png)
    4. Type: SQLAzure
-6. Press OK
-7. Press Save
+6. Select `OK`
+7. Select `Save`
 
 
 #### Front End Web Site
