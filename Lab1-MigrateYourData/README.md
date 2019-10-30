@@ -184,11 +184,11 @@ Now that you know our database can be migrated you will use the Migration tool t
 8. Choose SQL Server Authentication
 9. User: migrateadmin
 10. Password: 'AzureMigrateTraining2019#'
-11. Press Connect
-12. Choose your database and press next
-13. Select all tables and press 'Generate SQL script'
+11. Select `Connect`
+12. Choose your database and select `next`
+13. Select all tables and select `Generate SQL script`
 14. Once the script is generated, you may review it
-15. Press 'Deploy Schema'
+15. Select `Deploy Schema`
 16. You now have your schema successfully migrated to Azure SQL DB
 
 #### Data Migration
@@ -234,7 +234,7 @@ By default Azure SQL Databases reject all traffic to them.  You were able to run
 2. Click on your Azure SQL Server Instance
 3. From `Overview`, select `Set server firewall` from the top menu
 4. You will see your client IP address listed.   You need to create a new rule allowing that IP like this ![SetSQLIP](../images/SetSQLIP.png)
-5. Press Save
+5. Select `Save`
 
 ##### Check your data in SQL
 
@@ -255,7 +255,7 @@ You have a shared Linux VM that is simulating the production MongoDB product dat
 You can do all this from the Azure Bash Shell
 
 1. Launch a new Azure Command Shell.  You can either:
-   1. Press the shell icon in the Azure Portal, as in the setup for the Cosmos DB
+   1. Select the shell icon in the Azure Portal, as in the setup for the Cosmos DB
    2. Open a new browser tab to:  http://shell.azure.com for a full screen experience
    
 2. Download the MongoDB client tools (you can paste into the shell with a right click)
@@ -283,7 +283,7 @@ You can do all this from the Azure Bash Shell
 1. Dump the data from the remote MongoDB with the following Command
 
    1. ```bash
-      mongodump --host 40.70.205.251 --username=labuser --password=AzureMigrateTraining2019# --db=tailwind --authenticationDatabase=tailwind
+      mongodump --host 52.175.230.38 --username=labuser --password=AzureMigrateTraining2019# --db=tailwind --authenticationDatabase=tailwind
       ```
 
 3. Check to see that you successfully dumped the data
@@ -323,11 +323,10 @@ First check to make sure the Cosmos DB instance was created successfully.
 4. Create the following environment variables in that shell
 
    > ```language-bash
-   > COSMOS_DB_NAME=<Host name from connection string properties>
-   > COSMOS_USER=<username from connection string properties>
-   > COSMOS_PWD=<primary password from connection string properties>
+   > COSMOS_DB_NAME='<Host name from connection string properties>'
+   > COSMOS_USER='<username from connection string properties>'
+   > COSMOS_PWD='<primary password from connection string properties>'
    > ```
-
    
 5. Make sure you are still in the /dump/tailwind directory still
 
@@ -345,7 +344,7 @@ mongorestore \
     --collection inventory
 ```
 8. Go into your Azure Cosmos DB account and click on `Data Explorer`. 
-9. Press the refresh button next to Collections if you don't see the tailwind collection
+9. Select the `refresh` button next to Collections if you don't see the tailwind collection
 10. Select the `tailwind` database.
 11. Expand the `tailwind` node, expand the `inventory` node, and select `Documents`
 12. You should see the inventory item documents are now in Cosmos DB
@@ -354,9 +353,7 @@ mongorestore \
 ![cosmospopulated](../images/cosmospopulated.png)
 
 
-
 **Congratulations!**   You have now successfully moved both a SQL Server Database and a Mongo DB database to the Azure cloud!
-
 
 
 ## Learn More/Resources
