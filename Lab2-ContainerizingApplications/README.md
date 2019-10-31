@@ -52,7 +52,7 @@ The source code for all three projects are in this repo.  You will first pull it
 
 ## Activity 1 - Build your services for docker containers
 
-Now you'll get into the really exciting stuff!  There's an existing code base for two services and web front end.  In this activity, you will compile the code, put them in a docker container and put the container image into the container registry.  Typically you would need Docker installed and configured;however, Azure Container Registry Service can run the build and containerization. You only need to point it to the source code.
+Now you'll get into the really exciting stuff!  There's an existing code base for two services and web front end.  In this activity, you will compile the code,put them in a docker container and put the container image into the container registry.  Typically you would need Docker installed and configured;however, Azure Container Registry Service can run the build and containerization. You only need to point it to the source code.
 
 ### Build the code and deploy to ACR
 
