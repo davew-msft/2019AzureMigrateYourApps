@@ -190,4 +190,4 @@ Dave's Notes
 * Lab 1
   * discuss cloud shell
   * paas vs on-prem VM
-  
+  * DMA vs DMS
