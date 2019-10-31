@@ -183,3 +183,11 @@ If you need a MongoDB to perform Lab 3.  Follow these steps:
 
  
 
+
+
+Dave's Notes
+
+* Lab 1
+  * discuss cloud shell
+  * paas vs on-prem VM
+  

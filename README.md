@@ -18,3 +18,5 @@ Agenda
 | 3:15 - 4:15 | Hands on Activity – Deploy a web app using CI/CD in Azure DevOps |
 | 4:15 - 4:30 | PPT wrap up / call to action |
 
+[Lab1 Migrate Your Data to Azure](Lab1-MigrateYourData/README.md)
+

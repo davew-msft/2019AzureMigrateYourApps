@@ -2,7 +2,7 @@
 
 ## Lab Goals
 
-The goals of this lab is to get you familiar with the Azure environment, portal and command line.  Everything you can do in the Azure Portal can also be done through a command line and scripting.  youwill expose you to both methods of creating resources in Azure.  In this lab you will:
+The goals of this lab is to get you familiar with the Azure environment, portal and command line.  Everything you can do in the Azure Portal can also be done through a command line and scripting.  We will expose you to both methods of creating resources in Azure.  In this lab you will:
 
 - Use the Azure Portal to create resources
 - Use the Azure Cloud Shell to create resources
@@ -37,44 +37,10 @@ One thing to consider is that some resources have a limit to how many characters
 
 ### Setup 1 - Verify On-premises SQL VM
 
-### Setup 1 - Create SQL VM
-
-**This step can be skipped, if desired and in the interest of time. You can instead use the following VM information from our "shared lab" SQL Server where everything is already created. Connectivity information will be provided below.**
-
-
-
-1. Login to the Azure Portal http://portal.azure.com
-
-2. Press the create new resource button in the upper left toolbar
-
-   ![CreateNewResource](../images/CreateNewResource.png)
-
-3. Type 'SQL Server in the search box' - Press Enter
-
-4. Pick 'SQL Server 2017 on Windows Server 2016'
-
-   ![SQL2017-create](../images/SQL2017-create.png)
-
-5. Press Create
-
-6. Set the following Basic Parameters
-
-   1. Resource Group: Use the Resource Group you were assigned
-   2. VM Name: '(prefix)OnPremSQL'
-   3. Region: Use the default region if it is in the  US.  If not, change to any US region.
-   4. Change Size to: D2 v3
-   5. Username: 'migrateadmin'
-   6. Password: 'AzureMigrateTraining2019#'
-   7. Inbound Port Rules
-      1. Allows Selected Ports
-      2. RDP
-
-7. Press the 'SQL Server settings' on the top toolbar
-
-   1. SQL Connectivity: Pubilc
-   2. SQL Authentication: Enable
-
-8. Press 'Review and Create'
+1. Login to the Azure Portal http://portal.azure.com using your assigned credentials
+2. Select `Virtual Machines` from the left-pane menu in the Azure Portal (you might need to expand the left pane)
+3. Verify the presence of the VM named 'OnPremSQL' and its Status is 'running'
+4. This is the SQL VM you will use as the source database for the migration
 
 
 ### Setup 2 - Verify Azure Database Migration Service
