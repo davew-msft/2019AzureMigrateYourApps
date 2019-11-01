@@ -4,10 +4,10 @@
 
 The goal of this lab is to take an existing web application and move it from a standard deployment using on premises web farms to a container infrastructure on Azure.  This will enable a much more saleable environment with a lot less management.   In this lab you will:
 
-- Create a container registry in Azure
-- Build an application for containers leveraging Azure compute
-- Deploy the containers to scalable web instances.
-
+### Learning Objectives
+      - Create a container registry in Azure
+      - Build an application for containers leveraging Azure compute
+      - Deploy the containers to scalable web instances.
 
 
 ## Setup Environment 
@@ -48,9 +48,9 @@ The source code for all three projects are in this repo.  You will first pull it
 5. Creation should only take a few minutes, but you can review key features while you are waiting here: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro
 
 
-## Activity 1 - Build your services for docker containers
+## Exercise 1 - Build your services for docker containers
 
-Now you'll get into the really exciting stuff!  There's an existing code base for two services and web front end.  In this activity, you will compile the code, put them in a docker container and put the container image into the container registry.  Typically you would need Docker installed and configured; however, Azure Container Registry Service can run the build and containerization. You only need to point it to the source code
+Now you'll get into the really exciting stuff!  There's an existing code base for two services and web front end.  In this exercise, you will compile the code, put them in a docker container and put the container image into the container registry.  Typically you would need Docker installed and configured; however, Azure Container Registry Service can run the build and containerization. You only need to point it to the source code
 
 ### Build the code and deploy to ACR
 
