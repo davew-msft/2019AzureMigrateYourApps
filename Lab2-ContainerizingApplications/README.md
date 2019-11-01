@@ -71,7 +71,7 @@ Now you'll get into the really exciting stuff!  There's an existing code base fo
    2. Select the resource of type Container Registry
    3. Select `Repositories` in the left-pane menu
    4. You should see 'product-service' in the repositories list 
-4. Build the inventory service and frontend containers****
+4. Build the inventory service and frontend containers
 
    ```
    az acr build -t inventory-service:latest -r $MYACR ./2019AzureMigrateYourApps/Lab2-ContainerizingApplications/src/inventory-service/InventoryService.Api
@@ -173,7 +173,7 @@ The product service uses the NOSQL data that was in the on-premise MongoDB.  You
 
 ##### Set the Web App Properties
 
-1. Select `Resource groups` in the Azure portal, select 'Lab-1-xxxxx' resource group
+1. Select `Resource groups` in the Azure portal, select 'Lab-2-xxxxx' resource group
 2. Select your product service resource of type 'App Service'
 3. Select `Configuration` on the left-pane menu
 4. Here you will see some default application setting, and you will add a few more.
@@ -237,14 +237,18 @@ Now you need to point the front end web site to the product and inventory web se
 You can get the base URL's for inventory and product services by clicking on their overview page and looking at the URL property on the right hand side
 
 1. Select `Resource groups` in the Azure portal, select 'Lab-2-xxxxx' resource group
-2. Select your inventory or product service resource of type 'App Service'
-3. Take note / copy the URL and save it to a Notepad file
+2. Select your inventory service resource of type 'App Service'
+3. From the `Overview` page, copy the `URL` and save it to a Notepad file
+4. Go back to the 'Lab-2-xxxxx' resource group
+5. Select your product service resource of type 'App Service'
+6. From the `Overview` page, copy the `URL` and save it to a Notepad file
+
 
 ##### Set Front End Web App Properties
 
 You will now set the Front End application settings using the Azure CLI:  Copy the below code and replace the base URL placeholders with the URL's of your services.
 
-> Note: If you closed the command window you may have lost the values for the initial environment variables you setup, then you need to redefine MYRG and MYID again.  If you previously saved these variables in a Notepad file, you can copy and paste them from there
+Note: If you closed the command window you may have lost the values for the initial environment variables you setup, then you need to redefine MYRG and MYID again.  If you previously saved these variables in a Notepad file, you can copy and paste them from there
 
 ```
 az webapp config appsettings set --resource-group $MYRG --name "$MYID"frontend --settings INVENTORY_SERVICE_BASE_URL='<your inventory base url>' PRODUCT_SERVICE_BASE_URL='<your product service base url>'

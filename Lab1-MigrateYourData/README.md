@@ -174,11 +174,11 @@ Now that you know the database can be migrated, you will use the Migration tool 
 3. Authentication type: Windows
 4. UN-Check the Encrypt Connection box
 5. Select `Connect`
-6. Select the `TailwindInventory` database, select `Next`
+6. Select the `TailwindInventory` database, select `Add`
 7. Target Server:  This will be the Azure SQL Server Instance you created.  
    1. In the Azure Portal, select `Resource groups` from the left-pane menu and select your resource group
    2. Find the SQL Server Instance you created.  It will be resource type of SQL Server
-   3. Copy the server name on the right hand side of the overview page
+   3. Copy the `Server name` on the right hand side of the overview page
    4. Paste that full name into the target server name of the wizard
 8. Choose SQL Server Authentication
 9. User: migrateadmin
@@ -192,7 +192,9 @@ Now that you know the database can be migrated, you will use the Migration tool 
 
 #### Data Migration
 
-Now that you have the schema migrated, you now need to move the data.  You will use the Azure Data Migration Service for this as it is much more robust option and can migrate the data with very minimal downtime
+Now that you have the schema migrated, you now need to move the data.  You will use the Azure Data Migration Service for this as it is much more robust option and can migrate the data with very minimal downtime.
+
+In the beginning of this lab, you were directed to ensure the Azure Database Migration Service was running.  Starting this service can take time, and you might see a message the service is unavailable for migration.  You can wait for it to complete or you can jump ahead to the CosmosDB migration and then come back to this section.
 
 1. In the Azure Portal, select `Resource groups` from the left-pane menu and then select the 'Lab-1-xxxxx' resource group
 2. Select the 'Azure Database Migration Service' resource
@@ -216,14 +218,17 @@ Now that you have the schema migrated, you now need to move the data.  You will 
    2. Authentication type: SQL Authentication
    3. User: migrateadmin
    4. Password: AzureMigrateTraining2019#
+   5. Uncheck the encrypt connection box
 3. Select `Save`
 4. Select `TailwindInventory` database from the source
-5. Select your database as the Target Database -> Save
+5. Select your database as the `Target Database`
+6. Select `Save`
 6. Select all tables and select `Save`
-7. Give a name to the migration activity and select "Don't Validate the Database" in the database validation options
-8. Run the migration
+7. Set `Activity name` to a name of your choice
+8. In `Validation option` select 'Don't Validate the Database'
+8. Select `Run migration`
 
-**<u>Congratulations!</u>**  You have successfully migrated from the VM instance of SQL to Azure SQL DB!  You can check to see the data is there by using the portal based query tool
+**Congratulations!**  You have successfully migrated from the VM instance of SQL to Azure SQL DB!  You can check to see the data is there by using the portal based query tool
 
 By default Azure SQL Databases reject all traffic to them.  You were able to run the Azure Database Migration tool because you checked the box to allow other Azure services to connect to it.  In order to connect to it via other tools, you need to open an exception for your IP address through the firewall
 
@@ -231,8 +236,9 @@ By default Azure SQL Databases reject all traffic to them.  You were able to run
 
 1. Select  your resource group
 2. Select your Azure SQL Server Instance
-3. From `Overview`, select `Set server firewall` from the top menu
-4. You will see your client IP address listed.   You need to create a new rule allowing that IP like this ![SetSQLIP](../images/SetSQLIP.png)
+3. From `Overview`, select `Firewalls and virtual networks` from the left-pane menu
+4. If you don't see your client IP address listed, select `+ Add client IP` from the top menu
+5. Ensure `Allow azure services and resources to access this server` is 'ON'
 5. Select `Save`
 
 ##### Check your data in SQL
@@ -285,9 +291,7 @@ You will do this from the Azure Bash Shell
 
 3. Check to see that you successfully dumped the data
 
-   1. Check that the directory has a dump and tailwind directory that contains the .bson and metadata files.  Run the following Bash commands:
-      ![CheckMongoDump](../images/CheckMongoDump.png)
-
+   1. Check that the directory has a dump and tailwind directory that contains the .bson and metadata files.  Run the following Bash commands ![CheckMongoDump](../images/CheckMongoDump.png)
 
 #### Check the Cosmos DB provisioning
 
@@ -334,7 +338,7 @@ mongorestore \
 
 8. Go into your Azure Cosmos DB account and select `Data Explorer`
 9. Select the `refresh` button next to Collections if you don't see the tailwind collection
-10. Select the `tailwind` database.
+10. Select the `tailwind` database
 11. Expand the `tailwind` node, expand the `inventory` node, and select `Documents`
 12. You should see the inventory item documents are now in Cosmos DB
 
