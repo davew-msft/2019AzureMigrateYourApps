@@ -189,5 +189,8 @@ Dave's Notes
 
 * Lab 1
   * discuss cloud shell
+  * incognito browser
   * paas vs on-prem VM
+  * firewall
   * DMA vs DMS
+  * uniqueifier
