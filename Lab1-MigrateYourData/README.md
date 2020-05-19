@@ -152,9 +152,10 @@ First you need to do a migration assessment to ensure the database has no issues
 4. Select `Next`
 5. Enter 'localhost' for server name and Windows authentication
 6. UN-Check the Encrypt Connection Box
-7. Select the `TailwindInventory` database, select `Add`
-8. Select `Start Assessment`
-9. You will see a report on compatibility issues, and in a production environment you would now have a list of possible incompatibilities that would have to be addressed.
+7. Click `Connect`
+8. Select the `TailwindInventory` database, select `Add`
+9. Select `Start Assessment`
+10. You will see a report on compatibility issues, and in a production environment you would now have a list of possible incompatibilities that would have to be addressed.
 
 #### Schema Migration 
 
